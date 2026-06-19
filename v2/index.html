@@ -99,7 +99,7 @@ body{
 }
 .wordmark .dot{color:var(--accent);}
 .markicon{height:1.25em;width:auto;display:block;}
-.cover-logo img{width:8.6em;height:auto;display:block;}
+.cover-logo img{width:7.2em;height:auto;display:block;margin-bottom:.3em;}
 .concl-logo img{width:11em;height:auto;display:block;}
 .masthead .kicker{
   font-size:.62em;
@@ -150,16 +150,17 @@ p{line-height:1.62;}
 
 /* ---------- Cover ---------- */
 .cover .slidebody{justify-content:space-between;}
-.cover-top{display:flex;justify-content:space-between;align-items:center;gap:2em;}
+.cover-top{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.05em;}
+.cover-top .label{margin-bottom:0;}
 .cover-headline{
   font-family:var(--serif-kr);
   font-weight:600;
-  font-size:3.4em;
-  line-height:1.2;
+  font-size:3.7em;
+  line-height:1.24;
   letter-spacing:-.02em;
   max-width:none;
 }
-.cover-headline .q{color:var(--accent);display:block;white-space:nowrap;}
+.cover-headline .q{color:var(--accent);white-space:nowrap;}
 .cover-mark{
   font-family:var(--serif-latin);
   font-size:6.4em;
@@ -428,11 +429,9 @@ p{line-height:1.62;}
       </div>
       <div class="slidebody">
         <div class="cover-top">
-          <div>
-            <div class="label" style="margin-bottom:1em;">Band Rehearsal, Organized</div>
-            <h1 class="cover-headline"><span class="q">합주 준비, 스트레스 받지 말자.</span><br/>합주에 필요한<br/>모든 걸 한 번에 관리!</h1>
-          </div>
           <div class="cover-logo"><img src="logo-trans.png" alt="Orpheus"/></div>
+          <div class="label">Band Rehearsal, Organized</div>
+          <h1 class="cover-headline"><span class="q">합주 준비, 스트레스 받지 말자.</span><br/>합주에 필요한<br/>모든 걸 한 번에 관리!</h1>
         </div>
         <div class="cover-foot">
           <div class="cover-sub">밴드부 운영진과 부원을 위한<br/>모바일 합주 운영 앱</div>
@@ -460,7 +459,7 @@ p{line-height:1.62;}
           </div>
           <div class="stack" style="gap:1.4em;">
             <div class="label">The Problem</div>
-            <h2>합주 한 번 준비하는데<br/>확인할 게 너무 많다.</h2>
+            <h2>합주 한 번 준비하는데<br/>해야할 게 너무 많아요 ㅜㅜ</h2>
             <p class="lead muted">일정은 단톡방, 참석은 답장, 악보는 드라이브 링크, 파트 협의는 개인 메시지…<br/>정보와 행동이 <span class="accent serif">한곳에 있지 않고 흩어진다.</span></p>
             <hr class="rule" style="margin:.4em 0;"/>
             <div class="keyband">
