@@ -138,6 +138,15 @@ body{
 .cmrow .cmname{font-weight:700;font-size:.95em;white-space:nowrap;flex:0 0 auto;}
 .cmrow .cmstage{font-size:.7em;color:#fff;background:var(--accent);border-radius:999px;padding:.22em .7em;font-weight:700;white-space:nowrap;flex:0 0 auto;}
 .cmrow .cmwhy{font-size:.85em;color:#403c34;line-height:1.4;}
+/* slide 11 — receiver-experience matrix */
+.matrix{display:grid;grid-template-columns:7em 1.3fr 1fr 1.3fr;border-top:2px solid var(--accent);}
+.matrix .mh{font-size:.64em;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;padding:.55em .85em;border-bottom:1px solid var(--line-strong);}
+.matrix .mc{padding:.7em .85em;border-bottom:1px solid var(--line);font-size:.84em;line-height:1.42;color:#34302a;}
+.matrix .stg{font-family:var(--serif-kr);font-weight:600;color:var(--accent);font-size:1.05em;}
+.matrix .stg small{display:block;font-family:var(--serif-latin);font-size:.55em;letter-spacing:.12em;color:var(--muted);font-weight:600;margin-top:.1em;}
+.matrix .qq2{display:block;color:var(--muted);margin-top:.25em;font-size:.92em;}
+.matrix .ch{font-weight:700;color:#2c2a25;}
+.matrix .ms{font-family:var(--serif-kr);color:var(--ink);}
 .masthead .kicker{
   font-size:.62em;
   letter-spacing:.34em;
@@ -746,20 +755,32 @@ p{line-height:1.62;}
         <span class="pageno"><b>11</b> / 12 · 수신자 경험 설계</span>
       </div>
       <div class="slidebody">
-        <div style="margin-bottom:1.1em;">
+        <div style="margin-bottom:.7em;">
           <div class="label">Receiver Journey</div>
-          <h2 style="margin-top:.25em;font-size:2em;">인지에서 행동까지, <span class="accent">네 단계</span></h2>
+          <h2 style="margin-top:.25em;font-size:1.85em;">인지 → 이해 → 신뢰 → 행동, <span class="accent">단계별 설계</span></h2>
         </div>
-        <div class="aida">
-          <div class="astep"><div class="num">01</div><div class="nm">인지</div><div class="qq">“합주 준비 스트레스, 딱 내 얘기네.”</div></div>
-          <div class="astep"><div class="num">02</div><div class="nm">이해</div><div class="qq">“곡·일정·합주실·악보를 한 앱에서 관리하는구나.”</div></div>
-          <div class="astep"><div class="num">03</div><div class="nm">신뢰</div><div class="qq">“운영진 홈·부원 홈이 실제 운영 흐름이랑 맞네.”</div></div>
-          <div class="astep"><div class="num">04</div><div class="nm">행동</div><div class="qq">“이번 합주 준비 현황, 한번 확인해보고 싶다.”</div></div>
-        </div>
-        <div class="chanmap">
-          <div class="cmrow"><span class="cmico">🛒</span><span class="cmname">악기몰·커뮤니티 배너</span><span class="cmstage">인지 → 행동</span><span class="cmwhy">악기몰·뮬 같은 커뮤니티에서 다양한 밴드·연주자에게 ‘Orpheus라는 해결책’을 각인시키고, 바로 다운로드로 잇는다.</span></div>
-          <div class="cmrow"><span class="cmico">📌</span><span class="cmname">합주실 포스터</span><span class="cmstage">이해 → 신뢰 → 행동</span><span class="cmwhy">이미 겪는 사람에게 “내 얘기다”를 확인시키고, 실제 화면·QR로 설치까지 끌어낸다.</span></div>
-          <div class="cmrow"><span class="cmico">🔔</span><span class="cmname">앱 푸시 알림</span><span class="cmstage">신뢰 → 행동</span><span class="cmwhy">가입한 운영자·부원에게 리마인드·투표 알림으로 약속을 지켜, 탭 한 번의 행동을 끌어낸다.</span></div>
+        <div class="matrix">
+          <div class="mh">단계</div><div class="mh">수신자 상태</div><div class="mh">메시지 채널</div><div class="mh">전달 메시지</div>
+
+          <div class="mc stg">인지<small>Awareness</small></div>
+          <div class="mc">아직 문제를 의식 못 한, 악기를 사러 모인 다양한 밴드·연주자<span class="qq2">“이런 앱이 있네?”</span></div>
+          <div class="mc"><span class="ch">악기몰·악기 커뮤니티 배너</span> (뮬 등)</div>
+          <div class="mc ms">“밴드 시작했다면, 운영은 Orpheus로.”</div>
+
+          <div class="mc stg">이해<small>Interest</small></div>
+          <div class="mc">합주 준비 스트레스를 실제로 겪는 활동 밴드·부원<span class="qq2">“합주 준비, 딱 내 얘기네.”</span></div>
+          <div class="mc"><span class="ch">합주실 포스터</span></div>
+          <div class="mc ms">“합주실 예약·일정·악보, 앱 하나로.”</div>
+
+          <div class="mc stg">신뢰<small>Trust</small></div>
+          <div class="mc">설치를 저울질하거나 막 가입한 사용자<span class="qq2">“진짜 운영이 편해지네.”</span></div>
+          <div class="mc"><span class="ch">앱 화면(운영진·부원 홈) · 푸시 알림</span></div>
+          <div class="mc ms">“실제 운영 데이터 그대로 — 약속을 지킨다.”</div>
+
+          <div class="mc stg">행동<small>Action</small></div>
+          <div class="mc">지금 응답·투표·재공지를 해야 하는 운영자·부원<span class="qq2">“탭 한 번이면 끝.”</span></div>
+          <div class="mc"><span class="ch">앱 푸시 알림 · 포스터 QR</span></div>
+          <div class="mc ms">“미응답·투표, 알림 하나로 챙긴다.”</div>
         </div>
       </div>
     </section>
