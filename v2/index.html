@@ -147,6 +147,14 @@ body{
 .matrix .qq2{display:block;color:var(--muted);margin-top:.25em;font-size:.92em;}
 .matrix .ch{font-weight:700;color:#2c2a25;}
 .matrix .ms{font-family:var(--serif-kr);color:var(--ink);}
+/* slide 3 — scattered platforms */
+.scatter{position:relative;flex:1;min-height:0;margin:.2em 0;}
+.platform{position:absolute;width:8.6em;transform:translate(-50%,-50%) rotate(var(--r,0deg));display:flex;flex-direction:column;align-items:center;gap:.4em;text-align:center;}
+.platform .tile{width:3.2em;height:3.2em;border-radius:.85em;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(40,32,20,.18);}
+.platform .tile img{width:56%;height:56%;display:block;}
+.platform .pn{font-weight:700;font-size:.82em;color:#2c2a25;}
+.platform .pi{font-size:.7em;color:var(--muted);line-height:1.3;}
+.scatter .hub{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);text-align:center;width:17em;}
 .masthead .kicker{
   font-size:.62em;
   letter-spacing:.34em;
@@ -490,7 +498,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>02</b> / 12 · 문제 상황</span>
+        <span class="pageno"><b>02</b> / 13 · 문제 상황</span>
       </div>
       <div class="slidebody">
         <div class="cols cols-2" style="align-items:center;">
@@ -516,11 +524,35 @@ p{line-height:1.62;}
       </div>
     </section>
 
-    <!-- ============ 3. TARGET ============ -->
+    <!-- ============ 3. SCATTERED PLATFORMS ============ -->
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>03</b> / 12 · 타겟 정의</span>
+        <span class="pageno"><b>03</b> / 13 · 흩어진 정보</span>
+      </div>
+      <div class="slidebody">
+        <div class="scatter">
+          <div class="platform" style="left:16%;top:22%;--r:-7deg;"><div class="tile" style="background:#FEE500;"><img src="icons/kakaotalk.svg" alt="카카오톡"/></div><div class="pn">카카오톡</div><div class="pi">공지 · 참석 답장</div></div>
+          <div class="platform" style="left:84%;top:22%;--r:6deg;"><div class="tile" style="background:#03C75A;"><img src="icons/naver.svg" alt="네이버 예약"/></div><div class="pn">네이버 예약</div><div class="pi">합주실 예약</div></div>
+          <div class="platform" style="left:9%;top:55%;--r:5deg;"><div class="tile" style="background:#0F9D58;"><img src="icons/googlesheets.svg" alt="구글 시트"/></div><div class="pn">구글 시트</div><div class="pi">일정 · 회비 · 참석</div></div>
+          <div class="platform" style="left:91%;top:55%;--r:-5deg;"><div class="tile" style="background:#5865F2;"><img src="icons/discord.svg" alt="디스코드"/></div><div class="pn">디스코드</div><div class="pi">파트별 대화 · 연습</div></div>
+          <div class="platform" style="left:26%;top:85%;--r:4deg;"><div class="tile" style="background:#0B0B0B;"><img src="icons/notion.svg" alt="노션"/></div><div class="pn">노션</div><div class="pi">곡 · 자료 정리</div></div>
+          <div class="platform" style="left:74%;top:85%;--r:-6deg;"><div class="tile" style="background:#1A73E8;"><img src="icons/googledrive.svg" alt="구글 드라이브"/></div><div class="pn">구글 드라이브</div><div class="pi">악보 파일</div></div>
+          <div class="hub">
+            <div class="label">The Problem, Visualized</div>
+            <h2 style="margin-top:.25em;font-size:1.95em;">정보가 <span class="accent">여기저기</span><br/>흩어져 있다</h2>
+            <p class="muted" style="font-size:.9em;margin-top:.4em;">합주 하나 준비하는데 앱 <b>여섯 개</b>를 오간다.</p>
+          </div>
+        </div>
+        <p class="muted" style="text-align:center;font-size:.85em;margin-top:.2em;">한 곳에 모이지 않으니 운영진은 매번 같은 걸 다시 묻는다 — <span class="accent serif">Orpheus는 이걸 한 곳으로 모은다.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ 4. TARGET ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>04</b> / 13 · 타겟 정의</span>
       </div>
       <div class="slidebody">
         <div style="text-align:center;margin-bottom:1.2em;">
@@ -562,7 +594,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>04</b> / 12 · 서비스 정의</span>
+        <span class="pageno"><b>05</b> / 13 · 서비스 정의</span>
       </div>
       <div class="slidebody">
         <div class="cols cols-7-12" style="align-items:center;gap:3em;">
@@ -594,7 +626,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>05</b> / 12 · 메시지 도출 논리</span>
+        <span class="pageno"><b>06</b> / 13 · 메시지 도출 논리</span>
       </div>
       <div class="slidebody">
         <div class="label" style="margin-bottom:.7em;">How the Message Was Built</div>
@@ -612,7 +644,7 @@ p{line-height:1.62;}
     <section class="slide s6">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>06</b> / 12 · Solution &amp; Value</span>
+        <span class="pageno"><b>07</b> / 13 · Solution &amp; Value</span>
       </div>
       <div class="slidebody">
         <div style="text-align:center;margin-bottom:.55em;">
@@ -652,7 +684,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>07</b> / 12 · 홍보 전략</span>
+        <span class="pageno"><b>08</b> / 13 · 홍보 전략</span>
       </div>
       <div class="slidebody">
         <div class="cols cols-12-7" style="gap:2.6em;align-items:center;">
@@ -674,7 +706,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>08</b> / 12 · 신뢰 · 행동의 증거</span>
+        <span class="pageno"><b>09</b> / 13 · 신뢰 · 행동의 증거</span>
       </div>
       <div class="slidebody">
         <div style="text-align:center;margin-bottom:.5em;">
@@ -710,7 +742,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>09</b> / 12 · 목업 ① 합주실 포스터</span>
+        <span class="pageno"><b>10</b> / 13 · 목업 ① 합주실 포스터</span>
       </div>
       <div class="slidebody">
         <div class="cols cols-7-12" style="gap:2.8em;align-items:center;">
@@ -731,7 +763,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>10</b> / 12 · 목업 ② 악기몰 배너</span>
+        <span class="pageno"><b>11</b> / 13 · 목업 ② 악기몰 배너</span>
       </div>
       <div class="slidebody">
         <div class="stack" style="gap:1.1em;">
@@ -752,7 +784,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>11</b> / 12 · 수신자 경험 설계</span>
+        <span class="pageno"><b>12</b> / 13 · 수신자 경험 설계</span>
       </div>
       <div class="slidebody">
         <div style="margin-bottom:.7em;">
@@ -775,12 +807,12 @@ p{line-height:1.62;}
           <div class="mc stg">신뢰<small>Trust</small></div>
           <div class="mc">설치를 저울질하거나 막 가입한 사용자<span class="qq2">“진짜 운영이 편해지네.”</span></div>
           <div class="mc"><span class="ch">앱 화면(운영진·부원 홈) · 푸시 알림</span></div>
-          <div class="mc ms">“정말로 편의성을 제공해준다.”</div>
+          <div class="mc ms">“다양한 기능으로 편의성을 제공해준다.”</div>
 
           <div class="mc stg">행동<small>Action</small></div>
           <div class="mc">지금 응답·투표·재공지를 해야 하는 운영자·부원<span class="qq2">“탭 한 번이면 끝.”</span></div>
           <div class="mc"><span class="ch">앱 푸시 알림 · 포스터 QR</span></div>
-          <div class="mc ms">“미응답·투표, 알림 하나로 챙긴다.”</div>
+          <div class="mc ms">“하나의 플랫폼으로 합주 운영을 빠르고 간편하게”</div>
         </div>
       </div>
     </section>
@@ -789,7 +821,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>12</b> / 12 · 결론</span>
+        <span class="pageno"><b>13</b> / 13 · 결론</span>
       </div>
       <div class="slidebody">
         <div class="concl">
