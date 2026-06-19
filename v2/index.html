@@ -105,6 +105,25 @@ body{
 .mockimg{display:block;border-radius:12px;box-shadow:0 18px 46px rgba(40,32,20,.20);border:1px solid var(--line);}
 .mockimg.poster{height:30em;width:auto;max-width:100%;max-height:100%;}
 .mockimg.banner{width:100%;height:auto;}
+/* slide 3 — target encounter context */
+.ctx{margin-top:.85em;padding-top:.7em;border-top:1px dashed var(--line-strong);font-size:.84em;color:#4a443b;line-height:1.5;}
+.ctx b{display:block;font-size:.72em;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.25em;}
+/* slide 5 — why this wording */
+.whymsg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1em;margin-top:1em;}
+.whycard{border-left:2px solid var(--accent);padding:.1em 0 .1em .8em;}
+.whycard .wn{font-family:var(--serif-latin);color:var(--accent);font-weight:600;font-size:1.05em;line-height:1;}
+.whycard .wt{font-weight:700;font-size:.92em;margin:.2em 0 .2em;}
+.whycard .wd{font-size:.8em;color:var(--muted);line-height:1.45;}
+.whyline{text-align:center;margin-top:.9em;font-size:.9em;}
+/* slide 6 — compact phones */
+.s6 .phone-screen{height:25.5em;}
+/* slide 10 — channel × AIDA mapping */
+.chanmap{display:flex;flex-direction:column;gap:.7em;margin-top:1.1em;}
+.cmrow{display:flex;align-items:center;gap:.8em;border:1px solid var(--line-strong);border-radius:11px;padding:.7em 1em;background:var(--card);}
+.cmrow .cmico{font-size:1.2em;flex:0 0 auto;}
+.cmrow .cmname{font-weight:700;font-size:.95em;white-space:nowrap;flex:0 0 auto;}
+.cmrow .cmstage{font-size:.7em;color:#fff;background:var(--accent);border-radius:999px;padding:.22em .7em;font-weight:700;white-space:nowrap;flex:0 0 auto;}
+.cmrow .cmwhy{font-size:.85em;color:#403c34;line-height:1.4;}
 .masthead .kicker{
   font-size:.62em;
   letter-spacing:.34em;
@@ -497,6 +516,7 @@ p{line-height:1.62;}
             <hr class="rule" style="margin:1em 0 .8em;"/>
             <div class="sayto">운영진에게는</div>
             <div class="quote accent">“이번 합주가 준비됐는지 한눈에 보세요.”</div>
+            <div class="ctx"><b>이럴 때 메시지를 만난다</b>시험 끝나고 합주를 잡으며 단톡이 폭주할 때 — 합주실 포스터로 마주친다.</div>
           </div>
           <div class="card">
             <div class="card-title"><span class="tagn">B</span> 부원</div>
@@ -509,6 +529,7 @@ p{line-height:1.62;}
             <hr class="rule" style="margin:1em 0 .8em;"/>
             <div class="sayto">부원에게는</div>
             <div class="quote accent">“오늘 해야 할 일을 놓치지 마세요.”</div>
+            <div class="ctx"><b>이럴 때 메시지를 만난다</b>합주실을 오가며 포스터·QR을 마주치거나, 막 장비를 산 새내기일 때.</div>
           </div>
         </div>
       </div>
@@ -561,20 +582,27 @@ p{line-height:1.62;}
           <div class="lrow"><div class="lk">Value</div><div class="lv">운영진은 확인·재공지 부담을 줄이고, 부원은 오늘 해야 할 일을 놓치지 않음</div></div>
           <div class="lrow msg"><div class="lk">Message</div><div class="lv">합주 준비, 스트레스 받지 말자.<br/>합주에 필요한 모든 걸 한 번에 관리!</div></div>
         </div>
-        <!-- <p class="muted" style="font-size:.86em;margin-top:1em;">먼저 “스트레스 받지 말자”로 <span class="accent serif">감정</span>을 풀어주고, 곧바로 “모든 걸 한 번에 관리”라는 <span class="accent serif">해결</span>을 보여준다.</p> -->
+        <div class="label" style="margin-top:1.2em;">왜 이 표현인가</div>
+        <div class="whymsg">
+          <div class="whycard"><div class="wn">01</div><div class="wt">기능이 아닌 감정에서</div><div class="wd">‘스트레스’는 밴드부가 실제로 쓰는 말 — 첫 문장을 공감으로 연다.</div></div>
+          <div class="whycard"><div class="wn">02</div><div class="wt">문제의 반대말로</div><div class="wd">흩어짐의 정반대인 ‘한 번에’로 해결을 즉시 약속한다.</div></div>
+          <div class="whycard"><div class="wn">03</div><div class="wt">명령형으로 끌어들여</div><div class="wd">‘받지 말자’로 청자를 함께 묶어 행동을 유도한다.</div></div>
+        </div>
+        <p class="whyline muted">예뻐서 고른 문장이 아니라, <span class="accent serif">문제 구조에서 역산한 카피</span>다.</p>
       </div>
     </section>
 
     <!-- ============ 6. PRODUCT PREVIEW ============ -->
-    <section class="slide">
+    <section class="slide s6">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>06</b> / 11 · 제품 미리보기</span>
+        <span class="pageno"><b>06</b> / 11 · 신뢰의 근거</span>
       </div>
       <div class="slidebody">
-        <div style="text-align:center;margin-bottom:.7em;">
-          <div class="label">Inside the App</div>
-          <h2 style="margin-top:.25em;font-size:2em;">운영진은 <span class="accent">한눈에</span>, 부원은 <span class="accent">오늘 할 일</span>만.</h2>
+        <div style="text-align:center;margin-bottom:.6em;">
+          <div class="label">신뢰 · 메시지의 증거</div>
+          <h2 style="margin-top:.25em;font-size:1.9em;">“한 번에 관리된다”, <span class="accent">실제 화면</span>이 증명한다.</h2>
+          <p class="muted" style="font-size:.86em;margin-top:.45em;">참석 미응답 · 부족 파트 · 악보 · 과제처럼 <span class="accent serif">밴드부가 진짜 다루는 정보</span>가 그대로 들어 있다.</p>
         </div>
         <div class="cols cols-2" style="gap:2.6em;align-items:start;justify-items:center;">
           <div>
@@ -585,10 +613,10 @@ p{line-height:1.62;}
                   <div class="ph-card">
                     <div class="ph-row"><span>합주 일정</span><b>6/22 토 18:00</b></div>
                     <div class="ph-row"><span>합주실</span><span class="ok">B101 예약완료</span></div>
-                    <div class="ph-row"><span>참석 응답</span><b>18 / 24</b></div>
+                    <div class="ph-row"><span>참석 응답</span><b>4 / 6</b></div>
                     <div class="ph-row"><span>부족 파트</span><b>보컬·키보드</b></div>
                     <div class="ph-row"><span>악보 준비</span><b>5 / 6</b></div>
-                    <div class="ph-row"><span>과제 미제출</span><b>3명</b></div>
+                    <div class="ph-row"><span>과제 미제출</span><b>2명</b></div>
                   </div>
                   <div style="display:flex;gap:.4em;">
                     <span class="chip on" style="font-size:.7em;">미응답자 확인</span>
@@ -598,7 +626,7 @@ p{line-height:1.62;}
                 <div class="ph-tabs"><span class="t on">홈</span><span class="t">일정</span><span class="t">음악</span><span class="t">대화</span><span class="t">내 정보</span></div>
               </div>
             </div>
-            <div class="phone-cap">운영진 홈 — 준비 상태를 한 화면에</div>
+            <div class="phone-cap">운영진 홈 — 실제 운영 데이터가 한 화면에</div>
           </div>
           <div>
             <div class="phone">
@@ -612,7 +640,7 @@ p{line-height:1.62;}
                 <div class="ph-tabs"><span class="t on">홈</span><span class="t">일정</span><span class="t">음악</span><span class="t">대화</span><span class="t">내 정보</span></div>
               </div>
             </div>
-            <div class="phone-cap">부원 홈 — 내가 할 일이 먼저</div>
+            <div class="phone-cap">부원 홈 — 내가 할 일이 그대로 보인다</div>
           </div>
         </div>
       </div>
@@ -700,8 +728,12 @@ p{line-height:1.62;}
           <div class="astep"><div class="num">03</div><div class="nm">신뢰</div><div class="qq">“운영진 홈·부원 홈이 실제 운영 흐름이랑 맞네.”</div></div>
           <div class="astep"><div class="num">04</div><div class="nm">행동</div><div class="qq">“이번 합주 준비 현황, 한번 확인해보고 싶다.”</div></div>
         </div>
-        <hr class="rule" style="margin:1.6em 0 1em;"/>
-        <p class="deliver" style="text-align:center;"><span class="accent">합주 준비, 스트레스 받지 말자.</span> 합주에 필요한 모든 걸 한 번에 관리!</p>
+        <div class="chanmap">
+          <div class="cmrow"><span class="cmico">🛒</span><span class="cmname">악기몰 배너</span><span class="cmstage">인지 → 행동</span><span class="cmwhy">아직 문제를 모르는 신규 밴드에게 “곧 필요할 것”을 심고, 바로 다운로드로 잇는다.</span></div>
+          <div class="cmrow"><span class="cmico">📌</span><span class="cmname">합주실 포스터</span><span class="cmstage">이해 → 신뢰 → 행동</span><span class="cmwhy">이미 겪는 사람에게 “내 얘기다”를 확인시키고, 실제 화면·QR로 설치까지 끌어낸다.</span></div>
+        </div>
+        <hr class="rule" style="margin:1.1em 0 .9em;"/>
+        <p class="deliver" style="text-align:center;font-size:1em;">타겟 · 채널 · 톤 · 메시지가 모두 <span class="accent">“흩어진 합주 준비를 한 번에”</span> 한 방향을 가리킨다.</p>
       </div>
     </section>
 
