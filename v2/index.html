@@ -115,8 +115,8 @@ body{
 .whycard .wt{font-weight:700;font-size:.92em;margin:.2em 0 .2em;}
 .whycard .wd{font-size:.8em;color:var(--muted);line-height:1.45;}
 .whyline{text-align:center;margin-top:.9em;font-size:.9em;}
-/* slide 6 — compact phones */
-.s6 .phone-screen{height:25.5em;}
+/* slide 6 — app screenshots */
+.s6 .appshot{height:23em;}
 /* slide 10 — channel × AIDA mapping */
 .chanmap{display:flex;flex-direction:column;gap:.7em;margin-top:1.1em;}
 .cmrow{display:flex;align-items:center;gap:.8em;border:1px solid var(--line-strong);border-radius:11px;padding:.7em 1em;background:var(--card);}
@@ -529,7 +529,7 @@ p{line-height:1.62;}
             <hr class="rule" style="margin:1em 0 .8em;"/>
             <div class="sayto">부원에게는</div>
             <div class="quote accent">“오늘 해야 할 일을 놓치지 마세요.”</div>
-            <div class="ctx"><b>이럴 때 메시지를 만난다</b>합주실을 오가며 포스터·QR을 마주치거나, 막 장비를 산 새내기일 때.</div>
+            <div class="ctx"><b>이럴 때 메시지를 만난다</b>합주실을 오가며 포스터·QR을 마주치거나, 장비를 사러 악기몰을 둘러볼 때.</div>
           </div>
         </div>
       </div>
@@ -596,50 +596,21 @@ p{line-height:1.62;}
     <section class="slide s6">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>06</b> / 11 · 신뢰의 근거</span>
+        <span class="pageno"><b>06</b> / 11 · 실제 앱 화면</span>
       </div>
       <div class="slidebody">
-        <div style="text-align:center;margin-bottom:.6em;">
-          <div class="label">신뢰 · 메시지의 증거</div>
-          <h2 style="margin-top:.25em;font-size:1.9em;">“한 번에 관리된다”, <span class="accent">실제 화면</span>이 증명한다.</h2>
-          <p class="muted" style="font-size:.86em;margin-top:.45em;">참석 미응답 · 부족 파트 · 악보 · 과제처럼 <span class="accent serif">밴드부가 진짜 다루는 정보</span>가 그대로 들어 있다.</p>
+        <div style="text-align:center;margin-bottom:.8em;">
+          <div class="label">실제 앱 화면</div>
+          <h2 style="margin-top:.25em;font-size:1.95em;">운영진 홈, 그리고 부원 홈.</h2>
+          <p class="muted" style="font-size:.9em;margin-top:.45em;">운영진은 준비 현황을 한눈에, 부원은 오늘 할 일만 본다.</p>
         </div>
-        <div class="cols cols-2" style="gap:2.6em;align-items:start;justify-items:center;">
+        <div class="cols cols-2" style="gap:2.4em;align-items:start;justify-items:center;">
           <div>
-            <div class="phone">
-              <div class="phone-screen">
-                <div class="ph-top"><div class="small">운영진 홈</div><div class="ttl">이번 합주 준비 현황</div></div>
-                <div class="ph-body">
-                  <div class="ph-card">
-                    <div class="ph-row"><span>합주 일정</span><b>6/22 토 18:00</b></div>
-                    <div class="ph-row"><span>합주실</span><span class="ok">B101 예약완료</span></div>
-                    <div class="ph-row"><span>참석 응답</span><b>4 / 6</b></div>
-                    <div class="ph-row"><span>부족 파트</span><b>보컬·키보드</b></div>
-                    <div class="ph-row"><span>악보 준비</span><b>5 / 6</b></div>
-                    <div class="ph-row"><span>과제 미제출</span><b>2명</b></div>
-                  </div>
-                  <div style="display:flex;gap:.4em;">
-                    <span class="chip on" style="font-size:.7em;">미응답자 확인</span>
-                    <span class="chip" style="font-size:.7em;">알림 보내기</span>
-                  </div>
-                </div>
-                <div class="ph-tabs"><span class="t on">홈</span><span class="t">일정</span><span class="t">음악</span><span class="t">대화</span><span class="t">내 정보</span></div>
-              </div>
-            </div>
+            <div style="display:flex;justify-content:center;"><img class="appshot" src="app-home-cut.png" alt="Orpheus 운영진 홈 화면"/></div>
             <div class="phone-cap">운영진 홈 — 실제 운영 데이터가 한 화면에</div>
           </div>
           <div>
-            <div class="phone">
-              <div class="phone-screen">
-                <div class="ph-top"><div class="small">부원 홈</div><div class="ttl">오늘 할 일</div></div>
-                <div class="ph-body">
-                  <div class="ph-todo"><div class="n">1</div><div><div class="tt">참석 응답 필요</div><div class="ss">6/22 토 18:00 · B101</div><span class="btn">참석 응답하기 →</span></div></div>
-                  <div class="ph-todo"><div class="n">2</div><div><div class="tt">내 파트 악보</div><div class="ss">Supernova · Guitar · 최신</div><span class="btn">악보 받기 →</span></div></div>
-                  <div class="ph-todo"><div class="n">3</div><div><div class="tt">연습 과제</div><div class="ss">인트로 리프 녹음 · 내일 마감</div><span class="btn">과제 제출하기 →</span></div></div>
-                </div>
-                <div class="ph-tabs"><span class="t on">홈</span><span class="t">일정</span><span class="t">음악</span><span class="t">대화</span><span class="t">내 정보</span></div>
-              </div>
-            </div>
+            <div style="display:flex;justify-content:center;"><img class="appshot" src="member-home-cut.png" alt="Orpheus 부원 홈 화면"/></div>
             <div class="phone-cap">부원 홈 — 내가 할 일이 그대로 보인다</div>
           </div>
         </div>
@@ -663,7 +634,7 @@ p{line-height:1.62;}
           </div>
           <div class="chgrid" style="grid-template-columns:1fr;">
             <div class="chcard"><div class="ico">📌</div><div class="who">합주실을 쓰는 활동 중 밴드 · 신입</div><div class="nm">합주실 포스터 <span class="muted" style="font-weight:400;">· 오프라인</span></div><div class="msg">합주실 예약·일정·악보, 앱 하나로.</div></div>
-            <div class="chcard"><div class="ico">🛒</div><div class="who">입문 장비를 사는 신규 밴드</div><div class="nm">악기몰 배너 <span class="muted" style="font-weight:400;">· 구매 접점</span></div><div class="msg">밴드 시작했다면, 운영은 Orpheus로.</div></div>
+            <div class="chcard"><div class="ico">🛒</div><div class="who">장비를 사는 활동 밴드 · 새내기~고인물</div><div class="nm">악기몰 배너 <span class="muted" style="font-weight:400;">· 구매 접점</span></div><div class="msg">밴드 시작했다면, 운영은 Orpheus로.</div></div>
           </div>
         </div>
       </div>
@@ -705,7 +676,7 @@ p{line-height:1.62;}
           <img class="mockimg banner" src="banner.png" alt="악기 구매사이트 상품 페이지 상단 배너 목업"/>
           <div class="cols cols-2" style="gap:1.6em;align-items:center;margin-top:.1em;">
             <div class="deliver" style="font-size:1.02em;">전달 메시지 — <span class="accent">“밴드 시작했다면, 운영은 Orpheus로.”</span></div>
-            <div class="note"><span class="nh">구현 · 전달 근거</span>악기몰 상품 페이지 <b>띠배너</b>로 구현 — 입문 장비를 <b>막 구매하는 신규 밴드</b>에게 구매 접점에서 전달한다.</div>
+            <div class="note"><span class="nh">구현 · 전달 근거</span>악기몰 상품 페이지 <b>띠배너</b>로 구현 — 장비를 사러 온 <b>활동 중인 밴드(새내기부터 고인물까지)</b>에게, 합주 운영의 번거로움이 가장 와닿는 구매 접점에서 전달한다.</div>
           </div>
         </div>
       </div>
@@ -729,7 +700,7 @@ p{line-height:1.62;}
           <div class="astep"><div class="num">04</div><div class="nm">행동</div><div class="qq">“이번 합주 준비 현황, 한번 확인해보고 싶다.”</div></div>
         </div>
         <div class="chanmap">
-          <div class="cmrow"><span class="cmico">🛒</span><span class="cmname">악기몰 배너</span><span class="cmstage">인지 → 행동</span><span class="cmwhy">아직 문제를 모르는 신규 밴드에게 “곧 필요할 것”을 심고, 바로 다운로드로 잇는다.</span></div>
+          <div class="cmrow"><span class="cmico">🛒</span><span class="cmname">악기몰 배너</span><span class="cmstage">인지 → 행동</span><span class="cmwhy">장비를 사러 온 활동 밴드(새내기~고인물)에게 ‘Orpheus라는 해결책’을 각인시키고, 바로 다운로드로 잇는다.</span></div>
           <div class="cmrow"><span class="cmico">📌</span><span class="cmname">합주실 포스터</span><span class="cmstage">이해 → 신뢰 → 행동</span><span class="cmwhy">이미 겪는 사람에게 “내 얘기다”를 확인시키고, 실제 화면·QR로 설치까지 끌어낸다.</span></div>
         </div>
         <hr class="rule" style="margin:1.1em 0 .9em;"/>
