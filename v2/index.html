@@ -82,7 +82,7 @@ body{
 /* ---------- Editorial header / footer ---------- */
 .masthead{
   display:flex;
-  align-items:baseline;
+  align-items:center;
   justify-content:space-between;
   border-bottom:1px solid var(--line-strong);
   padding-bottom:.7em;
@@ -93,8 +93,14 @@ body{
   font-weight:600;
   font-size:1.05em;
   letter-spacing:.06em;
+  display:inline-flex;
+  align-items:center;
+  gap:.45em;
 }
 .wordmark .dot{color:var(--accent);}
+.markicon{height:1.25em;width:auto;display:block;}
+.cover-logo img{width:8.6em;height:auto;display:block;}
+.concl-logo img{width:11em;height:auto;display:block;}
 .masthead .kicker{
   font-size:.62em;
   letter-spacing:.34em;
@@ -144,7 +150,7 @@ p{line-height:1.62;}
 
 /* ---------- Cover ---------- */
 .cover .slidebody{justify-content:space-between;}
-.cover-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.cover-top{display:flex;justify-content:space-between;align-items:center;gap:2em;}
 .cover-headline{
   font-family:var(--serif-kr);
   font-weight:600;
@@ -417,7 +423,7 @@ p{line-height:1.62;}
     <!-- ============ 1. COVER ============ -->
     <section class="slide cover active">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="kicker">Digital Storytelling</span>
       </div>
       <div class="slidebody">
@@ -426,7 +432,7 @@ p{line-height:1.62;}
             <div class="label" style="margin-bottom:1em;">Band Rehearsal, Organized</div>
             <h1 class="cover-headline"><span class="q">합주 준비로 스트레스 받는다고?</span><br/>일정, 예약, 부원<br/>한번에 관리하자!</h1>
           </div>
-          <div class="cover-mark">O<span class="dot">.</span></div>
+          <div class="cover-logo"><img src="logo-trans.png" alt="Orpheus"/></div>
         </div>
         <div class="cover-foot">
           <div class="cover-sub">밴드부 운영진과 부원을 위한<br/>모바일 합주 운영 앱</div>
@@ -438,7 +444,7 @@ p{line-height:1.62;}
     <!-- ============ 2. PROBLEM ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>02</b> / 12 · 문제 상황</span>
       </div>
       <div class="slidebody">
@@ -468,7 +474,7 @@ p{line-height:1.62;}
     <!-- ============ 3. TARGET ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>03</b> / 12 · 타겟 정의</span>
       </div>
       <div class="slidebody">
@@ -508,7 +514,7 @@ p{line-height:1.62;}
     <!-- ============ 4. SERVICE ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>04</b> / 12 · 서비스 정의</span>
       </div>
       <div class="slidebody">
@@ -550,7 +556,7 @@ p{line-height:1.62;}
     <!-- ============ 5. MESSAGE LOGIC ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>05</b> / 12 · 메시지 도출 논리</span>
       </div>
       <div class="slidebody">
@@ -569,7 +575,7 @@ p{line-height:1.62;}
     <!-- ============ 6. PRODUCT PREVIEW ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>06</b> / 12 · 제품 미리보기</span>
       </div>
       <div class="slidebody">
@@ -622,7 +628,7 @@ p{line-height:1.62;}
     <!-- ============ 7. CHANNEL STRATEGY ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>07</b> / 12 · 홍보 전략</span>
       </div>
       <div class="slidebody">
@@ -647,7 +653,7 @@ p{line-height:1.62;}
     <!-- ============ 8. MOCKUP 1 — INSTAGRAM ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>08</b> / 12 · 목업 ① 인스타그램</span>
       </div>
       <div class="slidebody">
@@ -682,7 +688,7 @@ p{line-height:1.62;}
     <!-- ============ 9. MOCKUP 2 — POSTER ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>09</b> / 12 · 목업 ② 합주실 포스터</span>
       </div>
       <div class="slidebody">
@@ -712,7 +718,7 @@ p{line-height:1.62;}
     <!-- ============ 10. MOCKUP 3 — BANNER + COMMUNITY ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>10</b> / 12 · 목업 ③ 배너 · 커뮤니티</span>
       </div>
       <div class="slidebody">
@@ -745,7 +751,7 @@ p{line-height:1.62;}
     <!-- ============ 11. AIDA ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>11</b> / 12 · 수신자 경험 설계</span>
       </div>
       <div class="slidebody">
@@ -767,7 +773,7 @@ p{line-height:1.62;}
     <!-- ============ 12. CONCLUSION ============ -->
     <section class="slide">
       <div class="masthead">
-        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
         <span class="pageno"><b>12</b> / 12 · 결론</span>
       </div>
       <div class="slidebody">
@@ -780,7 +786,7 @@ p{line-height:1.62;}
             <div class="it"><span class="n">02</span>부원은 오늘 해야 할 일을 바로 처리한다.</div>
             <div class="it"><span class="n">03</span>합주 기록은 공연 준비까지 이어진다.</div>
           </div>
-          <div class="wordmark" style="font-size:1.4em;margin-top:.6em;">Orpheus<span class="dot">.</span></div>
+          <div class="concl-logo"><img src="logo-trans.png" alt="Orpheus"/></div>
         </div>
       </div>
     </section>
