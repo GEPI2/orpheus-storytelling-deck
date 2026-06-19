@@ -115,8 +115,16 @@ body{
 .whycard .wt{font-weight:700;font-size:.92em;margin:.2em 0 .2em;}
 .whycard .wd{font-size:.8em;color:var(--muted);line-height:1.45;}
 .whyline{text-align:center;margin-top:.9em;font-size:.9em;}
-/* slide 6 — app screenshots */
-.s6 .appshot{height:23em;}
+/* slide 6 — solution & value */
+.s6 .appshot{height:16em;}
+.svcol{display:flex;flex-direction:column;align-items:center;gap:.65em;}
+.svrole{font-weight:700;font-size:1.05em;display:flex;align-items:center;gap:.45em;}
+.svrole .tagn{font-size:.58em;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:999px;padding:.2em .62em;font-weight:700;}
+.svlist{width:100%;display:flex;flex-direction:column;gap:.5em;}
+.svitem{border-left:2px solid var(--accent);padding:.05em 0 .05em .7em;}
+.svitem .f{display:block;font-weight:700;font-size:.85em;color:#2c2a25;line-height:1.3;}
+.svitem .v{display:block;font-size:.79em;color:var(--muted);line-height:1.35;margin-top:.1em;}
+.svitem .v::before{content:"→ ";color:var(--accent);font-weight:700;}
 /* slide 10 — channel × AIDA mapping */
 .chanmap{display:flex;flex-direction:column;gap:.7em;margin-top:1.1em;}
 .cmrow{display:flex;align-items:center;gap:.8em;border:1px solid var(--line-strong);border-radius:11px;padding:.7em 1em;background:var(--card);}
@@ -596,22 +604,31 @@ p{line-height:1.62;}
     <section class="slide s6">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>06</b> / 11 · 실제 앱 화면</span>
+        <span class="pageno"><b>06</b> / 11 · Solution &amp; Value</span>
       </div>
       <div class="slidebody">
-        <div style="text-align:center;margin-bottom:.8em;">
-          <div class="label">실제 앱 화면</div>
-          <h2 style="margin-top:.25em;font-size:1.95em;">운영진 홈, 그리고 부원 홈.</h2>
-          <p class="muted" style="font-size:.9em;margin-top:.45em;">운영진은 준비 현황을 한눈에, 부원은 오늘 할 일만 본다.</p>
+        <div style="text-align:center;margin-bottom:.7em;">
+          <h2 style="font-size:2em;">Solution &amp; Value</h2>
+          <p class="muted" style="font-size:.88em;margin-top:.3em;">화면 속 기능이 각자의 <span class="accent serif">페인포인트</span>를 어떻게 푸는지.</p>
         </div>
-        <div class="cols cols-2" style="gap:2.4em;align-items:start;justify-items:center;">
-          <div>
+        <div class="cols cols-2" style="gap:2.8em;align-items:start;">
+          <div class="svcol">
+            <div class="svrole"><span class="tagn">A</span> 운영진</div>
             <div style="display:flex;justify-content:center;"><img class="appshot" src="app-home-cut.png" alt="Orpheus 운영진 홈 화면"/></div>
-            <div class="phone-cap">운영진 홈 — 실제 운영 데이터가 한 화면에</div>
+            <div class="svlist">
+              <div class="svitem"><span class="f">참석 응답 현황 · 미응답 리마인드</span><span class="v">단톡으로 일일이 참석 확인하고 재촉하던 번거로움 제거</span></div>
+              <div class="svitem"><span class="f">부족 파트 표시 · 인원 보강 촉구</span><span class="v">어느 파트가 비는지 몰라 막판에 사람 구하던 일 제거</span></div>
+              <div class="svitem"><span class="f">악보·과제 준비율 · 회비 체크</span><span class="v">“다 됐어?” 반복 질문과 운영 잡무 감소</span></div>
+            </div>
           </div>
-          <div>
+          <div class="svcol">
+            <div class="svrole"><span class="tagn">B</span> 부원</div>
             <div style="display:flex;justify-content:center;"><img class="appshot" src="member-home-cut.png" alt="Orpheus 부원 홈 화면"/></div>
-            <div class="phone-cap">부원 홈 — 내가 할 일이 그대로 보인다</div>
+            <div class="svlist">
+              <div class="svitem"><span class="f">오늘 할 일 (참석 · 악보 · 과제)</span><span class="v">단톡에 묻혀 내가 할 일을 놓치던 일 제거</span></div>
+              <div class="svitem"><span class="f">내 파트 악보 바로 받기</span><span class="v">악보가 어디 있는지 찾아 헤매던 일 제거</span></div>
+              <div class="svitem"><span class="f">과제 마감 · 새 피드백 · 공지 알림</span><span class="v">마감과 공지를 놓치던 일 제거</span></div>
+            </div>
           </div>
         </div>
       </div>
