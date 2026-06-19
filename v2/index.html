@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Orpheus — 디지털 스토리텔링</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+<style>
+:root{
+  --paper:#f5f1e8;
+  --paper-2:#efe9dc;
+  --ink:#1b1a17;
+  --muted:#6b665c;
+  --faint:#928c80;
+  --line:#d8d2c4;
+  --line-strong:#c4bcaa;
+  --accent:#9a3324;
+  --accent-2:#b8472f;
+  --accent-soft:#ece0d8;
+  --card:#fffdf8;
+  --shadow:0 14px 40px rgba(40,32,20,.10);
+
+  --serif-latin:"Fraunces", Georgia, serif;
+  --serif-kr:"Noto Serif KR", "Fraunces", serif;
+  --sans:"Pretendard","Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:var(--sans);
+  background:#26231d;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+
+/* ---------- Stage / 16:9 canvas ---------- */
+.stage{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    radial-gradient(1200px 800px at 50% -10%, #34302a, #211e19 60%);
+}
+.deck{
+  position:relative;
+  width:min(100vw, 177.78vh);   /* 16:9 */
+  height:min(56.25vw, 100vh);
+  background:var(--paper);
+  overflow:hidden;
+  box-shadow:0 30px 90px rgba(0,0,0,.45);
+}
+
+/* ---------- Slide base ---------- */
+.slide{
+  position:absolute;
+  inset:0;
+  padding:4.6% 6.2% 5.4%;
+  display:flex;
+  flex-direction:column;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(14px);
+  transition:opacity .5s ease, transform .5s ease, visibility .5s;
+  background:var(--paper);
+}
+.slide.active{opacity:1;visibility:visible;transform:none;}
+.slide.prev{transform:translateY(-14px);}
+
+/* container scaling: everything sized in cqw of the deck for crisp 16:9 */
+.deck{container-type:size;}
+.slide{font-size:clamp(10px, 1.45cqw, 30px);}
+
+/* ---------- Editorial header / footer ---------- */
+.masthead{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line-strong);
+  padding-bottom:.7em;
+  flex:0 0 auto;
+}
+.wordmark{
+  font-family:var(--serif-latin);
+  font-weight:600;
+  font-size:1.05em;
+  letter-spacing:.06em;
+}
+.wordmark .dot{color:var(--accent);}
+.masthead .kicker{
+  font-size:.62em;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:600;
+}
+.pageno{
+  font-family:var(--serif-latin);
+  font-size:.72em;
+  letter-spacing:.1em;
+  color:var(--muted);
+}
+.pageno b{color:var(--ink);font-weight:600;}
+
+.slidebody{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center;}
+
+/* ---------- Typography ---------- */
+.label{
+  font-size:.62em;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:700;
+}
+h1{
+  font-family:var(--serif-kr);
+  font-weight:600;
+  line-height:1.16;
+  letter-spacing:-.01em;
+}
+h2{
+  font-family:var(--serif-kr);
+  font-weight:600;
+  line-height:1.22;
+  font-size:2.5em;
+  letter-spacing:-.01em;
+}
+h3{font-family:var(--sans);font-weight:700;}
+p{line-height:1.62;}
+.lead{font-size:1.18em;line-height:1.6;color:#2c2a25;}
+.muted{color:var(--muted);}
+.serif{font-family:var(--serif-kr);}
+.accent{color:var(--accent);}
+
+.rule{height:1px;background:var(--line-strong);border:0;}
+
+/* ---------- Cover ---------- */
+.cover .slidebody{justify-content:space-between;}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.cover-headline{
+  font-family:var(--serif-kr);
+  font-weight:600;
+  font-size:4.1em;
+  line-height:1.18;
+  letter-spacing:-.015em;
+  max-width:16em;
+}
+.cover-headline .q{color:var(--accent);}
+.cover-mark{
+  font-family:var(--serif-latin);
+  font-size:6.4em;
+  font-weight:500;
+  line-height:.9;
+  letter-spacing:-.02em;
+}
+.cover-mark .dot{color:var(--accent);}
+.cover-sub{
+  font-size:1.05em;
+  color:var(--muted);
+  letter-spacing:.01em;
+}
+.cover-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:2em;}
+.cover-foot .meta{font-size:.7em;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
+
+/* ---------- Grid helpers ---------- */
+.cols{display:grid;gap:2.4em;}
+.cols-2{grid-template-columns:1fr 1fr;}
+.cols-12-7{grid-template-columns:1.1fr 1fr;}
+.cols-7-12{grid-template-columns:1fr 1.1fr;}
+.stack{display:flex;flex-direction:column;gap:1em;}
+.center-self{align-self:center;}
+
+/* ---------- Cards ---------- */
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:1.5em 1.6em;
+  box-shadow:var(--shadow);
+}
+.card.flat{box-shadow:none;background:transparent;border-color:var(--line-strong);}
+.card-title{font-weight:700;font-size:1.05em;display:flex;align-items:center;gap:.5em;margin-bottom:.7em;}
+.card .tagn{font-size:.6em;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+
+.ulist{list-style:none;display:flex;flex-direction:column;gap:.5em;}
+.ulist li{position:relative;padding-left:1.1em;font-size:.92em;color:#39362f;line-height:1.5;}
+.ulist li::before{content:"";position:absolute;left:0;top:.62em;width:.38em;height:.38em;background:var(--accent);border-radius:50%;}
+
+/* ---------- Chat bubbles (problem) ---------- */
+.bubbles{display:flex;flex-direction:column;gap:.7em;}
+.bubble{
+  align-self:flex-start;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px 14px 14px 4px;
+  padding:.6em .9em;
+  font-size:.9em;
+  max-width:88%;
+  box-shadow:0 4px 14px rgba(40,32,20,.05);
+}
+.bubble:nth-child(even){align-self:flex-end;border-radius:14px 14px 4px 14px;background:var(--paper-2);}
+.bubble .who{font-size:.72em;color:var(--faint);display:block;margin-bottom:.1em;}
+
+.keyband{display:flex;flex-wrap:wrap;gap:.5em;}
+.chip{
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  padding:.34em .9em;
+  font-size:.78em;
+  color:#46423a;
+  background:var(--paper);
+}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+/* ---------- Quote ---------- */
+.quote{
+  font-family:var(--serif-kr);
+  font-size:1.25em;
+  line-height:1.4;
+  color:var(--ink);
+}
+.quote.accent{color:var(--accent);}
+.sayto{font-size:.66em;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:.4em;}
+
+/* ---------- Flow ---------- */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:.45em;}
+.flow .step{
+  font-size:.78em;
+  padding:.42em .8em;
+  border:1px solid var(--line-strong);
+  border-radius:8px;
+  background:var(--card);
+  white-space:nowrap;
+}
+.flow .arr{color:var(--accent);font-size:.8em;}
+
+/* ---------- Phone mockup ---------- */
+.phone{
+  width:15.5em;
+  background:#0f0e0c;
+  border-radius:2.2em;
+  padding:.55em;
+  box-shadow:0 22px 50px rgba(20,14,6,.28);
+  flex:0 0 auto;
+}
+.phone-screen{
+  background:var(--paper);
+  border-radius:1.7em;
+  overflow:hidden;
+  height:30em;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+}
+.ph-top{
+  background:#fff;
+  padding:1em 1.1em .8em;
+  border-bottom:1px solid var(--line);
+}
+.ph-top .small{font-size:.6em;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+.ph-top .ttl{font-family:var(--serif-kr);font-weight:600;font-size:1.05em;margin-top:.15em;}
+.ph-body{padding:.9em 1.05em;display:flex;flex-direction:column;gap:.65em;overflow:hidden;flex:1;font-size:.82em;}
+.ph-card{border:1px solid var(--line);border-radius:11px;padding:.7em .8em;background:#fff;}
+.ph-card h4{font-size:.95em;font-weight:700;margin-bottom:.45em;display:flex;justify-content:space-between;align-items:center;}
+.ph-row{display:flex;justify-content:space-between;font-size:.88em;padding:.16em 0;color:#403c34;}
+.ph-row b{font-weight:600;}
+.ph-row .ok{color:var(--accent);font-weight:700;}
+.ph-tabs{display:flex;justify-content:space-around;border-top:1px solid var(--line);background:#fff;padding:.6em 0;font-size:.62em;color:var(--faint);}
+.ph-tabs .t.on{color:var(--accent);font-weight:700;}
+.ph-todo{display:flex;gap:.55em;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:.6em .7em;background:#fff;}
+.ph-todo .n{width:1.5em;height:1.5em;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.85em;flex:0 0 auto;}
+.ph-todo .tt{font-weight:700;font-size:.95em;}
+.ph-todo .ss{font-size:.82em;color:var(--muted);margin-top:.1em;}
+.ph-todo .btn{margin-top:.35em;display:inline-block;font-size:.78em;color:var(--accent);font-weight:700;}
+.phone-cap{font-size:.72em;color:var(--muted);text-align:center;margin-top:.7em;letter-spacing:.02em;}
+
+/* ---------- Logic table ---------- */
+.ltable{display:flex;flex-direction:column;border-top:1px solid var(--line-strong);}
+.ltable .lrow{display:grid;grid-template-columns:8.5em 1fr;gap:1.4em;padding:.85em .2em;border-bottom:1px solid var(--line);}
+.ltable .lk{font-family:var(--serif-latin);font-weight:600;font-size:.95em;letter-spacing:.04em;color:var(--accent);align-self:center;}
+.ltable .lv{font-size:1em;line-height:1.5;color:#332f29;align-self:center;}
+.ltable .lrow.msg{background:var(--accent-soft);border-bottom:none;margin-top:.2em;border-radius:10px;padding:1em 1em;}
+.ltable .lrow.msg .lk{color:var(--accent);}
+.ltable .lrow.msg .lv{font-family:var(--serif-kr);font-weight:600;font-size:1.12em;color:var(--accent);line-height:1.4;}
+
+/* ---------- Channel map ---------- */
+.chgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1em;}
+.chcard{border:1px solid var(--line-strong);border-radius:12px;padding:1.1em 1.2em;background:var(--card);position:relative;}
+.chcard .ico{font-size:1.3em;}
+.chcard .nm{font-weight:700;margin:.3em 0 .15em;font-size:1.02em;}
+.chcard .who{font-size:.74em;color:var(--accent);font-weight:700;letter-spacing:.04em;}
+.chcard .msg{font-size:.86em;color:#403c34;margin-top:.5em;line-height:1.45;font-family:var(--serif-kr);}
+
+/* ---------- Mockup placeholder slots ---------- */
+.slot{
+  border:1.5px dashed var(--line-strong);
+  border-radius:14px;
+  background:
+    repeating-linear-gradient(45deg, rgba(154,51,36,.035) 0 12px, transparent 12px 24px),
+    var(--paper-2);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:var(--muted);
+  gap:.5em;
+  padding:1em;
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow:hidden;
+}
+.slot .ph-ico{font-size:1.8em;opacity:.5;}
+.slot .ph-l{font-weight:700;font-size:.92em;color:#4a443b;}
+.slot .ph-dim{font-size:.7em;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+.slot.story{aspect-ratio:9/16;}
+.slot.feed{aspect-ratio:1/1;}
+.slot.poster{aspect-ratio:3/4;}
+.slot.banner{aspect-ratio:16/5;width:100%;}
+
+.note{
+  border-left:3px solid var(--accent);
+  background:var(--accent-soft);
+  border-radius:0 10px 10px 0;
+  padding:.8em 1em;
+  font-size:.84em;
+  line-height:1.55;
+  color:#3a352e;
+}
+.note b{color:var(--accent);}
+.note .nh{display:block;font-size:.72em;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.35em;}
+
+.deliver{font-family:var(--serif-kr);font-size:1.1em;line-height:1.4;color:var(--ink);}
+.deliver .accent{color:var(--accent);}
+
+/* community post */
+.post{border:1px solid var(--line);border-radius:12px;background:#fff;padding:1em 1.1em;box-shadow:var(--shadow);}
+.post .ph-h{display:flex;align-items:center;gap:.55em;margin-bottom:.6em;}
+.post .av{width:1.9em;height:1.9em;border-radius:50%;background:var(--accent-soft);}
+.post .nm{font-weight:700;font-size:.85em;}
+.post .tm{font-size:.72em;color:var(--faint);}
+.post .tx{font-size:.9em;line-height:1.5;color:#332f29;}
+.post .stat{margin-top:.6em;font-size:.74em;color:var(--faint);display:flex;gap:1em;}
+
+/* ---------- AIDA ---------- */
+.aida{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1em;}
+.astep{border-top:2px solid var(--accent);padding-top:.8em;}
+.astep .num{font-family:var(--serif-latin);font-size:1.5em;color:var(--accent);font-weight:600;}
+.astep .nm{font-weight:700;font-size:1.05em;margin:.2em 0 .5em;}
+.astep .qq{font-family:var(--serif-kr);font-size:.92em;line-height:1.45;color:#3a352e;}
+
+/* ---------- Conclusion ---------- */
+.concl{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.4em;}
+.concl .big{
+  font-family:var(--serif-kr);font-weight:600;font-size:2.7em;line-height:1.28;letter-spacing:-.01em;max-width:18em;
+}
+.concl .big .accent{color:var(--accent);}
+.sum3{display:flex;gap:2.4em;}
+.sum3 .it{font-size:.95em;color:#3a352e;max-width:11em;line-height:1.5;}
+.sum3 .it .n{font-family:var(--serif-latin);color:var(--accent);font-size:1.3em;display:block;margin-bottom:.2em;}
+
+/* ---------- Progress UI (outside deck) ---------- */
+.hud{
+  position:fixed;left:0;right:0;bottom:0;
+  display:flex;align-items:center;justify-content:center;gap:.7em;
+  padding:14px;z-index:50;pointer-events:none;
+}
+.dots{display:flex;gap:7px;pointer-events:auto;}
+.dot{
+  width:7px;height:7px;border-radius:50%;background:rgba(245,241,232,.32);
+  cursor:pointer;transition:all .25s;border:0;padding:0;
+}
+.dot.on{background:var(--paper);transform:scale(1.25);}
+.dot:hover{background:rgba(245,241,232,.7);}
+.progbar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:60;transition:width .4s ease;}
+.hint{
+  position:fixed;right:16px;bottom:14px;z-index:50;
+  font-size:11px;letter-spacing:.1em;color:rgba(245,241,232,.45);
+  font-family:var(--sans);
+}
+.hint kbd{font-family:var(--sans);border:1px solid rgba(245,241,232,.3);border-radius:4px;padding:0 5px;}
+
+/* click navigation zones */
+.nav-zone{position:fixed;top:0;bottom:40px;width:18%;z-index:40;cursor:pointer;}
+.nav-zone.left{left:0;}
+.nav-zone.right{right:0;}
+
+/* ---------- Print ---------- */
+@media print{
+  @page{size:landscape;margin:0;}
+  body{overflow:visible;background:#fff;}
+  .stage{position:static;display:block;background:#fff;}
+  .deck{width:100%;height:auto;box-shadow:none;}
+  .slide{position:relative;opacity:1!important;visibility:visible!important;transform:none!important;height:100vh;page-break-after:always;border-bottom:1px solid #ccc;}
+  .hud,.hint,.nav-zone,.progbar{display:none!important;}
+}
+</style>
+</head>
+<body>
+
+<div class="progbar" id="progbar"></div>
+<div class="nav-zone left"  id="navPrev" title="이전"></div>
+<div class="nav-zone right" id="navNext" title="다음"></div>
+
+<div class="stage">
+  <div class="deck" id="deck">
+
+    <!-- ============ 1. COVER ============ -->
+    <section class="slide cover active">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="kicker">Digital Storytelling</span>
+      </div>
+      <div class="slidebody">
+        <div class="cover-top">
+          <div>
+            <div class="label" style="margin-bottom:1em;">Band Rehearsal, Organized</div>
+            <h1 class="cover-headline"><span class="q">합주 준비로 스트레스 받는다고?</span><br/>여기서는 합주실부터 일정까지<br/>전부 다 관리되는데!</h1>
+          </div>
+          <div class="cover-mark">O<span class="dot">.</span></div>
+        </div>
+        <div class="cover-foot">
+          <div class="cover-sub">밴드부 운영진과 부원을 위한<br/>모바일 합주 운영 앱</div>
+          <div class="meta">메시지 전략 발표</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. PROBLEM ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>02</b> / 12 · 문제 상황</span>
+      </div>
+      <div class="slidebody">
+        <div class="cols cols-2" style="align-items:center;">
+          <div class="bubbles">
+            <div class="bubble"><span class="who">기획</span>이 곡 할 사람?</div>
+            <div class="bubble"><span class="who">보컬?</span>보컬은 아직 안 구해진 것 같은데?</div>
+            <div class="bubble"><span class="who">악보</span>악보 어디 있어?</div>
+            <div class="bubble"><span class="who">연습</span>연습 다 됐지?</div>
+            <div class="bubble"><span class="who">장소</span>합주실 여기 맞아?</div>
+            <div class="bubble"><span class="who">일정</span>일정 투표 안 한 사람 누구야?</div>
+            <div class="bubble"><span class="who">참석</span>이번 주 토요일 못 오는 사람 없지?</div>
+          </div>
+          <div class="stack" style="gap:1.4em;">
+            <div class="label">The Problem</div>
+            <h2>합주 한 번 준비하는데<br/>확인할 게 너무 많다.</h2>
+            <p class="lead muted">일정은 단톡방, 참석은 답장, 악보는 드라이브 링크, 파트 협의는 개인 메시지…<br/>정보와 행동이 <span class="accent serif">한곳에 있지 않고 흩어진다.</span></p>
+            <hr class="rule" style="margin:.4em 0;"/>
+            <div class="keyband">
+              <span class="chip">곡</span><span class="chip">파트</span><span class="chip">일정</span><span class="chip">합주실</span><span class="chip">참석</span><span class="chip">악보</span><span class="chip">연습</span><span class="chip">기록</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. TARGET ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>03</b> / 12 · 타겟 정의</span>
+      </div>
+      <div class="slidebody">
+        <div style="text-align:center;margin-bottom:1.2em;">
+          <div class="label">Two Audiences</div>
+          <h2 style="margin-top:.3em;">같은 밴드부 안에서도 <span class="accent">필요한 메시지는 다르다.</span></h2>
+        </div>
+        <div class="cols cols-2">
+          <div class="card">
+            <div class="card-title"><span class="tagn">A</span> 운영진</div>
+            <ul class="ulist">
+              <li>합주 인원 확인 · 파트 부족 확인</li>
+              <li>일정 투표 관리 · 합주실 예약</li>
+              <li>악보·연습 상태 확인</li>
+              <li>셋리스트·공연 준비</li>
+            </ul>
+            <hr class="rule" style="margin:1em 0 .8em;"/>
+            <div class="sayto">운영진에게는</div>
+            <div class="quote accent">“이번 합주가 준비됐는지 한눈에 보세요.”</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="tagn">B</span> 부원</div>
+            <ul class="ulist">
+              <li>참석 여부 응답 · 일정 투표 참여</li>
+              <li>내 파트 악보 확인</li>
+              <li>연습 과제 제출 · 피드백 확인</li>
+              <li>하고 싶은 곡 제안</li>
+            </ul>
+            <hr class="rule" style="margin:1em 0 .8em;"/>
+            <div class="sayto">부원에게는</div>
+            <div class="quote accent">“오늘 해야 할 일을 놓치지 마세요.”</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. SERVICE ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>04</b> / 12 · 서비스 정의</span>
+      </div>
+      <div class="slidebody">
+        <div class="cols cols-7-12" style="align-items:center;gap:3em;">
+          <div style="display:flex;justify-content:center;">
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="ph-top"><div class="small">숭실 밴드부</div><div class="ttl">Orpheus 홈</div></div>
+                <div class="ph-body">
+                  <div class="ph-card"><h4>이번 합주 <span class="accent">D-2</span></h4><div class="ph-row"><span>6/22 토 18:00</span><b>B101</b></div></div>
+                  <div class="ph-card"><h4>오늘 할 일</h4><div class="ph-row"><span>참석 응답</span><span class="ok">1</span></div><div class="ph-row"><span>악보 받기</span><span class="ok">1</span></div></div>
+                  <div class="ph-card"><h4>곡 같이하자</h4><div class="ph-row"><span>Supernova</span><span>파트 모집</span></div></div>
+                </div>
+                <div class="ph-tabs"><span class="t on">홈</span><span class="t">일정</span><span class="t">음악</span><span class="t">대화</span><span class="t">내 정보</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="stack" style="gap:1.3em;">
+            <div class="label">What Orpheus Is</div>
+            <h2>곡 정하기부터 공연 초대장까지,<br/>합주 운영을 <span class="accent">한 흐름</span>으로.</h2>
+            <p class="lead muted">음악을 듣는 앱도, 단순한 알림 앱도 아닙니다. 밴드부 운영이 실제로 흘러가는 순서를 그대로 앱에 담았습니다.</p>
+            <hr class="rule"/>
+            <div class="flow">
+              <span class="step">곡 정하기</span><span class="arr">→</span>
+              <span class="step">파트 모집</span><span class="arr">→</span>
+              <span class="step">일정 투표</span><span class="arr">→</span>
+              <span class="step">합주실 예약</span><span class="arr">→</span>
+              <span class="step">참석 응답</span><span class="arr">→</span>
+              <span class="step">악보 공유</span><span class="arr">→</span>
+              <span class="step">연습 확인</span><span class="arr">→</span>
+              <span class="step">합주 기록</span><span class="arr">→</span>
+              <span class="step">공연 준비</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. MESSAGE LOGIC ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>05</b> / 12 · 메시지 도출 논리</span>
+      </div>
+      <div class="slidebody">
+        <div class="label" style="margin-bottom:.7em;">How the Message Was Built</div>
+        <div class="ltable">
+          <div class="lrow"><div class="lk">Target</div><div class="lv">합주 준비를 관리해야 하는 밴드부 운영진과, 그 과정에 참여해야 하는 부원</div></div>
+          <div class="lrow"><div class="lk">Problem</div><div class="lv">곡 · 파트 · 일정 · 합주실 · 참석 · 악보 · 연습 상태가 여러 채널에 흩어져 있음</div></div>
+          <div class="lrow"><div class="lk">Solution</div><div class="lv">합주 준비 흐름을 모바일 앱 안에서 한 번에 관리</div></div>
+          <div class="lrow"><div class="lk">Value</div><div class="lv">운영진은 확인·재공지 부담을 줄이고, 부원은 오늘 해야 할 일을 놓치지 않음</div></div>
+          <div class="lrow msg"><div class="lk">Message</div><div class="lv">합주 준비로 스트레스 받는다고?<br/>여기서는 합주실부터 일정까지 전부 다 관리되는데!</div></div>
+        </div>
+        <p class="muted" style="font-size:.86em;margin-top:1em;">먼저 “스트레스”라는 <span class="accent serif">감정</span>을 건드리고, 곧바로 “전부 관리된다”는 <span class="accent serif">해결</span>을 보여준다.</p>
+      </div>
+    </section>
+
+    <!-- ============ 6. PRODUCT PREVIEW ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>06</b> / 12 · 제품 미리보기</span>
+      </div>
+      <div class="slidebody">
+        <div style="text-align:center;margin-bottom:.7em;">
+          <div class="label">Inside the App</div>
+          <h2 style="margin-top:.25em;font-size:2em;">운영진은 <span class="accent">한눈에</span>, 부원은 <span class="accent">오늘 할 일</span>만.</h2>
+        </div>
+        <div class="cols cols-2" style="gap:2.6em;align-items:start;justify-items:center;">
+          <div>
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="ph-top"><div class="small">운영진 홈</div><div class="ttl">이번 합주 준비 현황</div></div>
+                <div class="ph-body">
+                  <div class="ph-card">
+                    <div class="ph-row"><span>합주 일정</span><b>6/22 토 18:00</b></div>
+                    <div class="ph-row"><span>합주실</span><span class="ok">B101 예약완료</span></div>
+                    <div class="ph-row"><span>참석 응답</span><b>18 / 24</b></div>
+                    <div class="ph-row"><span>부족 파트</span><b>보컬·키보드</b></div>
+                    <div class="ph-row"><span>악보 준비</span><b>5 / 6</b></div>
+                    <div class="ph-row"><span>과제 미제출</span><b>3명</b></div>
+                  </div>
+                  <div style="display:flex;gap:.4em;">
+                    <span class="chip on" style="font-size:.7em;">미응답자 확인</span>
+                    <span class="chip" style="font-size:.7em;">알림 보내기</span>
+                  </div>
+                </div>
+                <div class="ph-tabs"><span class="t on">홈</span><span class="t">일정</span><span class="t">음악</span><span class="t">대화</span><span class="t">내 정보</span></div>
+              </div>
+            </div>
+            <div class="phone-cap">운영진 홈 — 준비 상태를 한 화면에</div>
+          </div>
+          <div>
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="ph-top"><div class="small">부원 홈</div><div class="ttl">오늘 할 일</div></div>
+                <div class="ph-body">
+                  <div class="ph-todo"><div class="n">1</div><div><div class="tt">참석 응답 필요</div><div class="ss">6/22 토 18:00 · B101</div><span class="btn">참석 응답하기 →</span></div></div>
+                  <div class="ph-todo"><div class="n">2</div><div><div class="tt">내 파트 악보</div><div class="ss">Supernova · Guitar · 최신</div><span class="btn">악보 받기 →</span></div></div>
+                  <div class="ph-todo"><div class="n">3</div><div><div class="tt">연습 과제</div><div class="ss">인트로 리프 녹음 · 내일 마감</div><span class="btn">과제 제출하기 →</span></div></div>
+                </div>
+                <div class="ph-tabs"><span class="t on">홈</span><span class="t">일정</span><span class="t">음악</span><span class="t">대화</span><span class="t">내 정보</span></div>
+              </div>
+            </div>
+            <div class="phone-cap">부원 홈 — 내가 할 일이 먼저</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. CHANNEL STRATEGY ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>07</b> / 12 · 홍보 전략</span>
+      </div>
+      <div class="slidebody">
+        <div class="cols cols-12-7" style="gap:2.6em;align-items:center;">
+          <div class="stack" style="gap:1em;">
+            <div class="label">Where the Message Lands</div>
+            <h2>메시지를 <span class="accent">어디서, 누구에게,<br/>어떻게</span> 전달할까.</h2>
+            <p class="lead muted">같은 핵심 메시지를 채널마다 형태를 바꿔 전한다. 밴드 하는 사람이 실제로 머무는 자리에서 마주치게 한다.</p>
+            <hr class="rule"/>
+            <p class="muted" style="font-size:.84em;">오프라인 합주실 → 온라인 SNS → 구매 접점 → 또래 커뮤니티까지, <span class="accent serif">접점을 잇는다.</span></p>
+          </div>
+          <div class="chgrid">
+            <div class="chcard"><div class="ico">📷</div><div class="who">신규 · 잠재 부원</div><div class="nm">인스타그램</div><div class="msg">합주 준비, 단톡방에서 그만.</div></div>
+            <div class="chcard"><div class="ico">📌</div><div class="who">합주실 이용 밴드</div><div class="nm">합주실 포스터</div><div class="msg">예약·일정·악보, 앱 하나로.</div></div>
+            <div class="chcard"><div class="ico">🛒</div><div class="who">입문 장비 구매자</div><div class="nm">악기몰 배너</div><div class="msg">밴드 시작했다면, 운영은 Orpheus로.</div></div>
+            <div class="chcard"><div class="ico">💬</div><div class="who">대학 동아리</div><div class="nm">대학 커뮤니티</div><div class="msg">단톡 지옥, 이걸로 정리됨.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. MOCKUP 1 — INSTAGRAM ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>08</b> / 12 · 목업 ① 인스타그램</span>
+      </div>
+      <div class="slidebody">
+        <div class="cols cols-7-12" style="gap:2.6em;align-items:center;">
+          <div style="display:flex;gap:1.1em;justify-content:center;">
+            <div class="slot story" style="width:9em;">
+              <div class="ph-ico">📱</div>
+              <div class="ph-l">스토리 목업</div>
+              <div class="ph-dim">1080 × 1920</div>
+            </div>
+            <div class="slot feed" style="width:11em;align-self:center;">
+              <div class="ph-ico">📷</div>
+              <div class="ph-l">피드 목업</div>
+              <div class="ph-dim">1080 × 1080</div>
+            </div>
+          </div>
+          <div class="stack" style="gap:1em;">
+            <div class="label">Mockup 01 · Social</div>
+            <h2 style="font-size:2em;">인스타그램</h2>
+            <div class="deliver">전달 메시지 — <span class="accent">“합주 준비, 단톡방에서 그만.”</span></div>
+            <div class="note">
+              <span class="nh">이 슬롯에 넣을 이미지 컨셉</span>
+              <b>피드:</b> 어두운 합주실 실루엣 위 큰 한글 카피. 하단에 앱 UI 한 컷 + <b>@orpheus.app</b>.<br/>
+              <b>스토리:</b> “오늘 할 일 3개 남음” 알림 UI를 풀스크린 목업으로. 무드 있는 밴드 사진 + 미니멀 타이포.
+            </div>
+            <p class="muted" style="font-size:.82em;">→ 신규·잠재 부원에게 감정(스트레스)을 먼저 건드리는 진입 채널.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. MOCKUP 2 — POSTER ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>09</b> / 12 · 목업 ② 합주실 포스터</span>
+      </div>
+      <div class="slidebody">
+        <div class="cols cols-7-12" style="gap:2.6em;align-items:center;">
+          <div style="display:flex;justify-content:center;">
+            <div class="slot poster" style="width:12.5em;">
+              <div class="ph-ico">📌</div>
+              <div class="ph-l">합주실 포스터 목업</div>
+              <div class="ph-dim">A3 세로 · 벽 부착</div>
+            </div>
+          </div>
+          <div class="stack" style="gap:1em;">
+            <div class="label">Mockup 02 · Offline</div>
+            <h2 style="font-size:2em;">합주실 포스터</h2>
+            <div class="deliver">전달 메시지 — <span class="accent">“합주실 예약·일정·악보, 앱 하나로.”</span></div>
+            <div class="note">
+              <span class="nh">이 슬롯에 넣을 이미지 컨셉</span>
+              실제 합주실 벽·문에 붙은 <b>A3 포스터 사진 mock</b>. 큰 카피 + 하단 <b>QR 코드</b>로 바로 설치 유도.
+              포스트잇·손글씨 질감으로 동아리 감성. <b>밴드부 신입 모집 시즌</b> 겨냥.
+            </div>
+            <p class="muted" style="font-size:.82em;">→ 타겟이 실제로 모이는 물리적 공간에서 마주치는 접점.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. MOCKUP 3 — BANNER + COMMUNITY ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>10</b> / 12 · 목업 ③ 배너 · 커뮤니티</span>
+      </div>
+      <div class="slidebody">
+        <div class="stack" style="gap:1em;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+            <div><div class="label">Mockup 03 · Commerce &amp; Community</div><h2 style="font-size:1.9em;margin-top:.2em;">악기몰 배너 &amp; 대학 커뮤니티</h2></div>
+          </div>
+          <div class="slot banner">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:.3em;">
+              <div class="ph-l">악기 구매사이트 가로 웹배너 목업</div>
+              <div class="ph-dim">상품 페이지 상단 띠배너 · 1200 × 375</div>
+            </div>
+          </div>
+          <div class="cols cols-2" style="gap:1.6em;align-items:start;margin-top:.3em;">
+            <div class="note">
+              <span class="nh">악기몰 배너 컨셉</span>
+              악기몰 상품 페이지 상단 띠배너. 카피 <b>“밴드 시작했다면, 운영은 Orpheus로.”</b>
+              입문 장비를 사는 <b>새 밴드</b>가 결제 직전 마주치게. 제품 톤에 맞춘 클린 배너.
+            </div>
+            <div class="post">
+              <div class="ph-h"><div class="av"></div><div><div class="nm">익명 · 숭실대 에브리타임</div><div class="tm">밴드/음악 게시판 · 방금</div></div></div>
+              <div class="tx">우리 밴드부 단톡 진짜 지옥이었는데 이거 쓰고 정리됨 ㅋㅋ 합주실 예약이랑 참석 체크 한 번에 됨</div>
+              <div class="stat"><span>♡ 42</span><span>💬 17</span><span>스크랩 9</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 11. AIDA ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>11</b> / 12 · 수신자 경험 설계</span>
+      </div>
+      <div class="slidebody">
+        <div style="margin-bottom:1.1em;">
+          <div class="label">Receiver Journey</div>
+          <h2 style="margin-top:.25em;font-size:2em;">인지에서 행동까지, <span class="accent">네 단계</span></h2>
+        </div>
+        <div class="aida">
+          <div class="astep"><div class="num">01</div><div class="nm">인지</div><div class="qq">“합주 준비 스트레스, 딱 내 얘기네.”</div></div>
+          <div class="astep"><div class="num">02</div><div class="nm">이해</div><div class="qq">“곡·일정·합주실·악보를 한 앱에서 관리하는구나.”</div></div>
+          <div class="astep"><div class="num">03</div><div class="nm">신뢰</div><div class="qq">“운영진 홈·부원 홈이 실제 운영 흐름이랑 맞네.”</div></div>
+          <div class="astep"><div class="num">04</div><div class="nm">행동</div><div class="qq">“이번 합주 준비 현황, 한번 확인해보고 싶다.”</div></div>
+        </div>
+        <hr class="rule" style="margin:1.6em 0 1em;"/>
+        <p class="deliver" style="text-align:center;"><span class="accent">합주 준비로 스트레스 받는다고?</span> 여기서는 합주실부터 일정까지 전부 다 관리되는데!</p>
+      </div>
+    </section>
+
+    <!-- ============ 12. CONCLUSION ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark">Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>12</b> / 12 · 결론</span>
+      </div>
+      <div class="slidebody">
+        <div class="concl">
+          <div class="label">In Closing</div>
+          <div class="big">합주 준비로 스트레스 받는다고?<br/><span class="accent">여기서는 합주실부터 일정까지<br/>전부 다 관리되는데!</span></div>
+          <hr class="rule" style="width:5em;background:var(--accent);height:2px;"/>
+          <div class="sum3">
+            <div class="it"><span class="n">01</span>운영진은 합주 준비 상태를 한눈에 본다.</div>
+            <div class="it"><span class="n">02</span>부원은 오늘 해야 할 일을 바로 처리한다.</div>
+            <div class="it"><span class="n">03</span>합주 기록은 공연 준비까지 이어진다.</div>
+          </div>
+          <div class="wordmark" style="font-size:1.4em;margin-top:.6em;">Orpheus<span class="dot">.</span></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="hud"><div class="dots" id="dots"></div></div>
+<div class="hint"><kbd>←</kbd> <kbd>→</kbd> 넘기기 · <kbd>F</kbd> 전체화면</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var dotsWrap = document.getElementById('dots');
+  var progbar = document.getElementById('progbar');
+  var cur = 0;
+
+  // build dots
+  slides.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.className = 'dot' + (i===0?' on':'');
+    b.setAttribute('aria-label','슬라이드 '+(i+1));
+    b.addEventListener('click', function(){ go(i); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function render(){
+    slides.forEach(function(s, i){
+      s.classList.remove('active','prev');
+      if(i === cur) s.classList.add('active');
+      else if(i < cur) s.classList.add('prev');
+    });
+    dots.forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+    progbar.style.width = ((cur)/(total-1)*100) + '%';
+    if(history.replaceState) history.replaceState(null,'','#'+(cur+1));
+  }
+  function go(i){ cur = Math.max(0, Math.min(total-1, i)); render(); }
+  function next(){ go(cur+1); }
+  function prev(){ go(cur-1); }
+
+  // keyboard
+  document.addEventListener('keydown', function(e){
+    switch(e.key){
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); prev(); break;
+      case 'Home': e.preventDefault(); go(0); break;
+      case 'End': e.preventDefault(); go(total-1); break;
+      case 'f': case 'F':
+        if(!document.fullscreenElement){ document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+        else { document.exitFullscreen && document.exitFullscreen(); }
+        break;
+    }
+  });
+
+  // click zones
+  document.getElementById('navNext').addEventListener('click', next);
+  document.getElementById('navPrev').addEventListener('click', prev);
+
+  // restore from hash
+  var h = parseInt((location.hash||'').replace('#',''),10);
+  if(h && h>=1 && h<=total) cur = h-1;
+  render();
+})();
+</script>
+</body>
+</html>
