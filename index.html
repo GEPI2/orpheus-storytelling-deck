@@ -186,6 +186,9 @@ body{
 .leg .lt{font-family:var(--serif-latin);font-weight:600;font-size:.98em;}
 .leg .ld{font-size:.78em;color:var(--muted);}
 .leg .ln{font-size:.82em;color:#2c2a25;font-weight:600;margin-top:.12em;}
+.leg .lg{font-size:.77em;color:var(--accent);font-weight:600;margin-top:.05em;line-height:1.35;}
+.macro{font-size:.74em;color:var(--muted);border-left:2px solid var(--line-strong);padding-left:.6em;line-height:1.4;}
+.macro b{color:#5a534a;}
 .dwrap{display:grid;grid-template-columns:1fr 1fr;gap:1.6em;}
 .dt{border-top:2px solid var(--line-strong);}
 .dt.assume{border-top-color:var(--accent);}
@@ -562,14 +565,14 @@ p{line-height:1.62;}
             <div class="ring sam"><span class="rlab">SAM</span></div>
             <div class="ring som"><span class="rlab">SOM</span></div>
           </div>
-          <div class="stack" style="gap:.95em;">
+          <div class="stack" style="gap:.7em;">
             <div class="legend">
-              <div class="leg"><span class="sw" style="background:#f4e9e3;border:1px solid #e4cabe;"></span><div><span class="lt">TAM</span> <span class="ld">· 국내 전체 합주 운영 잠재 시장</span><div class="ln">연 5.4억~27.1억 원 · 4,500~11,300팀 · 11.3만~28.2만 명</div></div></div>
-              <div class="leg"><span class="sw" style="background:#e8ccbf;border:1px solid #d6a48c;"></span><div><span class="lt">SAM</span> <span class="ld">· 대학 밴드부·공연음악 동아리</span><div class="ln">연 1.4억~7.3억 원 · 1,100~3,000개 · 2.9만~7.6만 명</div></div></div>
-              <div class="leg"><span class="sw" style="background:var(--accent);"></span><div><span class="lt">SOM</span> <span class="ld">· 1~2년 내 초기 확보 목표</span><div class="ln">연 600만~3,000만 원 · 100~250개 · 50~125개 유료 팀</div></div></div>
+              <div class="leg"><span class="sw" style="background:#f4e9e3;border:1px solid #e4cabe;"></span><div><span class="lt">TAM</span> <span class="ld">· 국내 전체 합주 운영 잠재 시장</span><div class="ln">운영 SaaS 연 5.4억~27.1억 원 · 4,500~11,300팀</div><div class="lg">+ 합주실·공연장 예약·대관 GMV 약 20억~416억 원</div></div></div>
+              <div class="leg"><span class="sw" style="background:#e8ccbf;border:1px solid #d6a48c;"></span><div><span class="lt">SAM</span> <span class="ld">· 대학 밴드부·공연음악 동아리</span><div class="ln">운영 SaaS 연 1.4억~7.3억 원 · 1,100~3,000개</div><div class="lg">+ 예약·대관 GMV 약 4.2억~80.3억 원</div></div></div>
+              <div class="leg"><span class="sw" style="background:var(--accent);"></span><div><span class="lt">SOM</span> <span class="ld">· 1~2년 내 초기 확보 목표</span><div class="ln">운영 SaaS 연 600만~3,000만 원 · 유료 50~125개</div><div class="lg">+ 예약·대관 GMV 약 5,100만~4.3억 · 수수료 포함 총 860만~7,300만 원</div></div></div>
             </div>
-            <hr class="rule"/>
-            <p class="serif" style="font-size:1.05em;line-height:1.42;">거대한 일반 일정 앱이 아니라, <span class="accent">합주 운영 문제가 반복되는</span> 밴드부·공연음악 동아리 시장을 공략한다.</p>
+            <div class="macro"><b>Macro 참고</b> · 국내 공연예술 시장 2024 매출 약 1.5조 원 · 2025 티켓판매(KOPIS) 약 1.7조 원</div>
+            <p class="serif" style="font-size:1em;line-height:1.4;">본 시장은 <span class="accent">합주 운영 SaaS</span>, 합주실·공연장 예약은 보조 시장. 거대한 일반 일정 앱이 아니라 합주 운영 문제가 반복되는 동아리 시장을 공략한다.</p>
           </div>
         </div>
         <p class="foot">※ 모든 시장 규모는 <b>추정치</b>이며 가정 기반 산정입니다. 산정 근거·출처는 다음 장 참조.</p>
@@ -589,28 +592,30 @@ p{line-height:1.62;}
         </div>
         <div class="dwrap">
           <div class="dt">
-            <div class="dth"><span class="dtag">검증 통계</span> 기초 모수 · 2023</div>
-            <div class="drow"><span>국내 중학생 수</span><b>1,326,831명</b></div>
-            <div class="drow"><span>국내 고등학생 수</span><b>1,278,269명</b></div>
-            <div class="drow"><span>고등교육 학생 수</span><b>3,042,848명</b></div>
-            <div class="drow"><span>학생 합계</span><b>5,647,948명</b></div>
-            <div class="drow"><span>고등교육기관 수</span><b>380개</b></div>
+            <div class="dth"><span class="dtag">검증 통계</span> 기초 모수 · 시장 지표</div>
+            <div class="drow"><span>중·고+대학생 합계 (2023)</span><b>5,647,948명</b></div>
+            <div class="drow"><span>고등교육기관 (2023)</span><b>380개</b></div>
+            <div class="drow"><span>등록공연장 (2024)</span><b>1,364개소 · 문예회관 280</b></div>
+            <div class="drow"><span>공연예술시장 매출 (2024)</span><b>약 1조 5,259억 원</b></div>
+            <div class="drow"><span>공연장 대관수입 (17.9%)</span><b>약 2,700억 원대</b></div>
+            <div class="drow"><span>티켓판매 KOPIS (2025)</span><b>약 1조 7,326억 원</b></div>
           </div>
           <div class="dt assume">
             <div class="dth"><span class="dtag">사업 가정</span> 가정값</div>
             <div class="drow"><span>합주 활동자 비율</span><b>전체 학생의 2~5%</b></div>
-            <div class="drow"><span>평균 팀원 수</span><b>25명</b></div>
-            <div class="drow"><span>구독료(동아리)</span><b>월 1만~2만 · 연 12만~24만 원</b></div>
+            <div class="drow"><span>평균 팀원 · 구독료</span><b>25명 · 연 12만~24만 원</b></div>
             <div class="drow"><span>학교당 음악 동아리</span><b>3~8개</b></div>
-            <div class="drow"><span>유료 전환율</span><b>1년차 30~50% · 2년차 50%</b></div>
+            <div class="drow"><span>팀당 합주실 지출</span><b>연 72만~240만 · 유료 40~70%</b></div>
+            <div class="drow"><span>팀당 공연장 대관</span><b>연 0.3~1회 × 50만~200만 원</b></div>
+            <div class="drow"><span>예약 중개 수수료</span><b>5~10%</b></div>
           </div>
         </div>
         <div class="calc">
-          <div class="calcc"><div class="cn">TAM</div><div class="cf">564.8만 명 × 2~5% = <b>11.3만~28.2만 명</b><br/>÷ 25명 = 4,500~11,300팀<br/>× 연 12~24만 = <b>5.4억~27.1억 원</b></div></div>
-          <div class="calcc"><div class="cn">SAM</div><div class="cf">380교 × 3~8개 = 1,100~3,000개<br/>× 25명 = 2.9만~7.6만 명<br/>× 연 12~24만 = <b>1.4억~7.3억 원</b></div></div>
-          <div class="calcc"><div class="cn">SOM</div><div class="cf">1년차 30~80개(유료 9~40) ≈ 108만~960만 원<br/>2년차 100~250개(유료 50~125) ≈ <b>600만~3,000만 원</b></div></div>
+          <div class="calcc"><div class="cn">TAM</div><div class="cf">운영 SaaS <b>5.4억~27.1억</b> (4,500~11,300팀)<br/>합주실 GMV 약 13억~190억<br/>공연장 GMV 약 6.8억~226억 → 예약·대관 <b>약 20억~416억</b></div></div>
+          <div class="calcc"><div class="cn">SAM</div><div class="cf">운영 SaaS <b>1.4억~7.3억</b> (1,100~3,000개)<br/>합주실 GMV 약 2.5억~43.8억<br/>공연장 GMV 약 1.7억~36.5억 → 예약·대관 <b>약 4.2억~80.3억</b></div></div>
+          <div class="calcc"><div class="cn">SOM</div><div class="cf">운영 SaaS <b>600만~3,000만</b> (유료 50~125팀)<br/>예약·대관 GMV 약 5,100만~4.3억<br/>+ 수수료 5~10% → 총 SOM <b>약 860만~7,300만</b></div></div>
         </div>
-        <p class="foot"><b>출처</b> · 교육부 Statistics Overview, 2023 Education in Korea(중·고/고등교육 학생 수·기관 수) · 국가데이터처 2018 청소년 통계(2017년 청소년 동아리 활동 참가율 77.6%) · 한양대학교 동아리 안내(대학 내 다수 공연음악 동아리 존재 — 정성 근거). 본 수치는 추정·가정 기반 산정이며 공식 통계가 아닙니다.</p>
+        <p class="foot"><b>출처</b> · 교육부 통계(학생 수·고등교육기관) · 지표누리 공연장/문예회관(등록공연장 1,364·문예회관 280) · 2025 공연예술조사 보도(2024 공연예술시장 매출·대관수입 17.9%) · KOPIS 2025 티켓판매 보고서(약 1.7조 원). 본 수치는 추정·가정 기반 산정이며 공식 통계가 아닙니다.</p>
       </div>
     </section>
 
