@@ -172,14 +172,14 @@ body{
 .tier.som .tdef,.tier.som .tsub{color:rgba(255,255,255,.88);opacity:1;}
 /* TAM/SAM/SOM concentric */
 .donut{position:relative;width:20em;height:20em;margin:0 auto;flex:0 0 auto;}
-.ring{position:absolute;left:50%;bottom:0;transform:translateX(-50%);border-radius:50%;box-shadow:0 6px 18px rgba(40,32,20,.08);}
+.ring{position:absolute;left:50%;bottom:0;transform:translateX(-50%);border-radius:50%;box-shadow:0 6px 18px rgba(40,32,20,.08);display:flex;justify-content:center;align-items:flex-start;}
 .ring.tam{width:20em;height:20em;background:#f4e9e3;border:1px solid #e4cabe;}
 .ring.sam{width:14em;height:14em;background:#e8ccbf;border:1px solid #d6a48c;}
-.ring.som{width:8em;height:8em;background:var(--accent);border:1px solid var(--accent);}
-.rlab{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--serif-latin);font-weight:600;letter-spacing:.1em;text-align:center;}
-.rlab.l-tam{top:1.3em;color:#8a6353;font-size:1.05em;}
-.rlab.l-sam{top:7em;color:#7c4a37;font-size:1.05em;}
-.rlab.l-som{top:15em;color:#fff;font-size:1.3em;}
+.ring.som{width:8em;height:8em;background:var(--accent);border:1px solid var(--accent);align-items:center;}
+.rlab{font-family:var(--serif-latin);font-weight:600;letter-spacing:.1em;text-align:center;line-height:1;}
+.ring.tam .rlab{margin-top:.8em;color:#8a6353;font-size:1.05em;}
+.ring.sam .rlab{margin-top:.6em;color:#7c4a37;font-size:1.05em;}
+.ring.som .rlab{color:#fff;font-size:1.3em;}
 .legend{display:flex;flex-direction:column;gap:.75em;}
 .leg{display:flex;gap:.7em;align-items:flex-start;}
 .leg .sw{width:.95em;height:.95em;border-radius:3px;flex:0 0 auto;margin-top:.3em;}
@@ -558,12 +558,9 @@ p{line-height:1.62;}
         </div>
         <div class="cols cols-12-7" style="gap:2.4em;align-items:center;">
           <div class="donut">
-            <div class="ring tam"></div>
-            <div class="ring sam"></div>
-            <div class="ring som"></div>
-            <div class="rlab l-tam">TAM</div>
-            <div class="rlab l-sam">SAM</div>
-            <div class="rlab l-som">SOM</div>
+            <div class="ring tam"><span class="rlab">TAM</span></div>
+            <div class="ring sam"><span class="rlab">SAM</span></div>
+            <div class="ring som"><span class="rlab">SOM</span></div>
           </div>
           <div class="stack" style="gap:.95em;">
             <div class="legend">
