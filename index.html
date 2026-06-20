@@ -155,6 +155,38 @@ body{
 .platform .pn{font-weight:700;font-size:.82em;color:#2c2a25;}
 .platform .pi{font-size:.7em;color:var(--muted);line-height:1.3;}
 .scatter .hub{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);text-align:center;width:17em;}
+/* market sizing — TAM/SAM/SOM */
+.estbadge{display:inline-block;font-size:.78em;letter-spacing:.04em;color:var(--accent);font-weight:700;border:1px solid var(--accent);border-radius:999px;padding:.1em .7em;white-space:nowrap;}
+.tssom{display:flex;flex-direction:column;align-items:center;gap:.6em;}
+.tier{width:100%;border-radius:14px;padding:.78em 1.1em;box-shadow:0 6px 18px rgba(40,32,20,.08);}
+.tier.sam{width:82%;}
+.tier.som{width:64%;}
+.tier.tam{background:#f3e7e1;border:1px solid #e4cabe;color:#4a3f39;}
+.tier.sam{background:#e7c9bc;border:1px solid #d6a48c;color:#48342b;}
+.tier.som{background:var(--accent);border:1px solid var(--accent);color:#fff;}
+.tier .th{display:flex;align-items:baseline;gap:.55em;flex-wrap:wrap;}
+.tier .tt{font-family:var(--serif-latin);font-weight:600;font-size:1.2em;letter-spacing:.05em;}
+.tier .tdef{font-size:.74em;opacity:.85;}
+.tier .trev{font-weight:700;font-size:1.02em;margin-top:.15em;}
+.tier .tsub{font-size:.76em;opacity:.85;margin-top:.05em;}
+.tier.som .tdef,.tier.som .tsub{color:rgba(255,255,255,.88);opacity:1;}
+.dwrap{display:grid;grid-template-columns:1fr 1fr;gap:1.6em;}
+.dt{border-top:2px solid var(--line-strong);}
+.dt.assume{border-top-color:var(--accent);}
+.dt .dth{display:flex;align-items:center;gap:.5em;font-size:.72em;letter-spacing:.1em;font-weight:700;padding:.55em 0;color:var(--muted);}
+.dt.assume .dth{color:var(--accent);}
+.dt .dtag{font-size:.86em;border-radius:5px;padding:.1em .5em;background:var(--paper-2);color:#5a534a;letter-spacing:0;}
+.dt.assume .dtag{background:var(--accent-soft);color:var(--accent);}
+.drow{display:flex;justify-content:space-between;gap:1em;padding:.42em 0;border-bottom:1px solid var(--line);font-size:.84em;}
+.drow span{color:var(--muted);}
+.drow b{color:#2c2a25;font-weight:600;text-align:right;}
+.calc{display:grid;grid-template-columns:repeat(3,1fr);gap:1em;margin-top:1.1em;}
+.calcc{border:1px solid var(--line-strong);border-radius:11px;padding:.7em .85em;background:var(--card);}
+.calcc .cn{font-family:var(--serif-latin);font-weight:600;color:var(--accent);font-size:.95em;}
+.calcc .cf{font-size:.78em;color:#403c34;line-height:1.55;margin-top:.3em;}
+.calcc .cf b{color:var(--accent);}
+.foot{font-size:.62em;color:var(--faint);line-height:1.5;margin-top:.7em;border-top:1px solid var(--line);padding-top:.5em;}
+.foot b{color:var(--muted);font-weight:700;}
 .masthead .kicker{
   font-size:.62em;
   letter-spacing:.34em;
@@ -498,7 +530,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>02</b> / 13 · 문제 상황</span>
+        <span class="pageno"><b>02</b> / 15 · 문제 상황</span>
       </div>
       <div class="slidebody">
         <div class="cols cols-2" style="align-items:center;">
@@ -524,11 +556,91 @@ p{line-height:1.62;}
       </div>
     </section>
 
-    <!-- ============ 3. SCATTERED PLATFORMS ============ -->
+    <!-- ============ 3. MARKET SIZE — TAM/SAM/SOM ============ -->
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>03</b> / 13 · 흩어진 정보</span>
+        <span class="pageno"><b>03</b> / 15 · 시장 규모</span>
+      </div>
+      <div class="slidebody">
+        <div style="margin-bottom:.7em;display:flex;align-items:flex-end;justify-content:space-between;gap:1em;">
+          <div>
+            <div class="label">Market Sizing</div>
+            <h2 style="font-size:1.95em;margin-top:.2em;">시장 규모: TAM / SAM / SOM</h2>
+          </div>
+          <span class="estbadge">추정 · 가정 기반 산정</span>
+        </div>
+        <div class="cols cols-12-7" style="gap:2.4em;align-items:center;">
+          <div class="tssom">
+            <div class="tier tam">
+              <div class="th"><span class="tt">TAM</span><span class="tdef">국내 전체 합주 운영 잠재 시장</span></div>
+              <div class="trev">연 5.4억 ~ 27.1억 원</div>
+              <div class="tsub">4,500~11,300팀 · 11.3만~28.2만 명</div>
+            </div>
+            <div class="tier sam">
+              <div class="th"><span class="tt">SAM</span><span class="tdef">대학 밴드부·공연음악 동아리</span></div>
+              <div class="trev">연 1.4억 ~ 7.3억 원</div>
+              <div class="tsub">1,100~3,000개 동아리 · 2.9만~7.6만 명</div>
+            </div>
+            <div class="tier som">
+              <div class="th"><span class="tt">SOM</span><span class="tdef">1~2년 내 초기 확보 목표</span></div>
+              <div class="trev">연 600만 ~ 3,000만 원</div>
+              <div class="tsub">100~250개 동아리 · 50~125개 유료 팀</div>
+            </div>
+          </div>
+          <div class="stack" style="gap:1em;">
+            <h2 class="serif" style="font-size:1.45em;line-height:1.42;">거대한 일반 일정 앱 시장이 아니라,<br/><span class="accent">합주 운영 문제가 반복되는</span> 밴드부·공연음악 동아리 시장을 공략한다.</h2>
+            <hr class="rule"/>
+            <p class="muted" style="font-size:.84em;">TAM은 전체 잠재, SAM은 현실적 공략 범위, SOM은 1~2년 목표. <b class="accent">아래로 갈수록 좁고 확실해진다.</b></p>
+          </div>
+        </div>
+        <p class="foot">※ 모든 시장 규모는 <b>추정치</b>이며 가정 기반 산정입니다. 산정 근거·출처는 다음 장 참조.</p>
+      </div>
+    </section>
+
+    <!-- ============ 4. MARKET SIZE — BASIS ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>04</b> / 15 · 시장 규모 · 산정 근거</span>
+      </div>
+      <div class="slidebody">
+        <div style="margin-bottom:.5em;">
+          <div class="label">How the Numbers Were Built</div>
+          <h2 style="font-size:1.8em;margin-top:.2em;">시장 규모 — 산정 근거</h2>
+        </div>
+        <div class="dwrap">
+          <div class="dt">
+            <div class="dth"><span class="dtag">검증 통계</span> 기초 모수 · 2023</div>
+            <div class="drow"><span>국내 중학생 수</span><b>1,326,831명</b></div>
+            <div class="drow"><span>국내 고등학생 수</span><b>1,278,269명</b></div>
+            <div class="drow"><span>고등교육 학생 수</span><b>3,042,848명</b></div>
+            <div class="drow"><span>학생 합계</span><b>5,647,948명</b></div>
+            <div class="drow"><span>고등교육기관 수</span><b>380개</b></div>
+          </div>
+          <div class="dt assume">
+            <div class="dth"><span class="dtag">사업 가정</span> 가정값</div>
+            <div class="drow"><span>합주 활동자 비율</span><b>전체 학생의 2~5%</b></div>
+            <div class="drow"><span>평균 팀원 수</span><b>25명</b></div>
+            <div class="drow"><span>구독료(동아리)</span><b>월 1만~2만 · 연 12만~24만 원</b></div>
+            <div class="drow"><span>학교당 음악 동아리</span><b>3~8개</b></div>
+            <div class="drow"><span>유료 전환율</span><b>1년차 30~50% · 2년차 50%</b></div>
+          </div>
+        </div>
+        <div class="calc">
+          <div class="calcc"><div class="cn">TAM</div><div class="cf">564.8만 명 × 2~5% = <b>11.3만~28.2만 명</b><br/>÷ 25명 = 4,500~11,300팀<br/>× 연 12~24만 = <b>5.4억~27.1억 원</b></div></div>
+          <div class="calcc"><div class="cn">SAM</div><div class="cf">380교 × 3~8개 = 1,100~3,000개<br/>× 25명 = 2.9만~7.6만 명<br/>× 연 12~24만 = <b>1.4억~7.3억 원</b></div></div>
+          <div class="calcc"><div class="cn">SOM</div><div class="cf">1년차 30~80개(유료 9~40) ≈ 108만~960만 원<br/>2년차 100~250개(유료 50~125) ≈ <b>600만~3,000만 원</b></div></div>
+        </div>
+        <p class="foot"><b>출처</b> · 교육부 Statistics Overview, 2023 Education in Korea(중·고/고등교육 학생 수·기관 수) · 국가데이터처 2018 청소년 통계(2017년 청소년 동아리 활동 참가율 77.6%) · 한양대학교 동아리 안내(대학 내 다수 공연음악 동아리 존재 — 정성 근거). 본 수치는 추정·가정 기반 산정이며 공식 통계가 아닙니다.</p>
+      </div>
+    </section>
+
+    <!-- ============ 5. SCATTERED PLATFORMS ============ -->
+    <section class="slide">
+      <div class="masthead">
+        <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
+        <span class="pageno"><b>05</b> / 15 · 흩어진 정보</span>
       </div>
       <div class="slidebody">
         <div class="scatter">
@@ -552,7 +664,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>04</b> / 13 · 타겟 정의</span>
+        <span class="pageno"><b>06</b> / 15 · 타겟 정의</span>
       </div>
       <div class="slidebody">
         <div style="text-align:center;margin-bottom:1.2em;">
@@ -594,7 +706,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>05</b> / 13 · 서비스 정의</span>
+        <span class="pageno"><b>07</b> / 15 · 서비스 정의</span>
       </div>
       <div class="slidebody">
         <div class="cols cols-7-12" style="align-items:center;gap:3em;">
@@ -626,7 +738,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>06</b> / 13 · 메시지 도출 논리</span>
+        <span class="pageno"><b>08</b> / 15 · 메시지 도출 논리</span>
       </div>
       <div class="slidebody">
         <div class="label" style="margin-bottom:.7em;">How the Message Was Built</div>
@@ -644,7 +756,7 @@ p{line-height:1.62;}
     <section class="slide s6">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>07</b> / 13 · Solution &amp; Value</span>
+        <span class="pageno"><b>09</b> / 15 · Solution &amp; Value</span>
       </div>
       <div class="slidebody">
         <div style="text-align:center;margin-bottom:.55em;">
@@ -684,7 +796,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>08</b> / 13 · 홍보 전략</span>
+        <span class="pageno"><b>10</b> / 15 · 홍보 전략</span>
       </div>
       <div class="slidebody">
         <div class="cols cols-12-7" style="gap:2.6em;align-items:center;">
@@ -706,7 +818,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>09</b> / 13 · 신뢰 · 행동의 증거</span>
+        <span class="pageno"><b>11</b> / 15 · 신뢰 · 행동의 증거</span>
       </div>
       <div class="slidebody">
         <div style="text-align:center;margin-bottom:.5em;">
@@ -742,7 +854,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>10</b> / 13 · 목업 ① 합주실 포스터</span>
+        <span class="pageno"><b>12</b> / 15 · 목업 ① 합주실 포스터</span>
       </div>
       <div class="slidebody">
         <div class="cols cols-7-12" style="gap:2.8em;align-items:center;">
@@ -763,7 +875,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>11</b> / 13 · 목업 ② 악기몰 배너</span>
+        <span class="pageno"><b>13</b> / 15 · 목업 ② 악기몰 배너</span>
       </div>
       <div class="slidebody">
         <div class="stack" style="gap:1.1em;">
@@ -784,7 +896,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>12</b> / 13 · 수신자 경험 설계</span>
+        <span class="pageno"><b>14</b> / 15 · 수신자 경험 설계</span>
       </div>
       <div class="slidebody">
         <div style="margin-bottom:.7em;">
@@ -821,7 +933,7 @@ p{line-height:1.62;}
     <section class="slide">
       <div class="masthead">
         <span class="wordmark"><img class="markicon" src="logo-icon.png" alt="Orpheus"/>Orpheus<span class="dot">.</span></span>
-        <span class="pageno"><b>13</b> / 13 · 결론</span>
+        <span class="pageno"><b>15</b> / 15 · 결론</span>
       </div>
       <div class="slidebody">
         <div class="concl">
