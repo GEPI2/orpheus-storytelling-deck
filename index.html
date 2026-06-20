@@ -170,6 +170,22 @@ body{
 .tier .trev{font-weight:700;font-size:1.02em;margin-top:.15em;}
 .tier .tsub{font-size:.76em;opacity:.85;margin-top:.05em;}
 .tier.som .tdef,.tier.som .tsub{color:rgba(255,255,255,.88);opacity:1;}
+/* TAM/SAM/SOM concentric */
+.donut{position:relative;width:20em;height:20em;margin:0 auto;flex:0 0 auto;}
+.ring{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 6px 18px rgba(40,32,20,.08);}
+.ring.tam{width:20em;height:20em;background:#f4e9e3;border:1px solid #e4cabe;}
+.ring.sam{width:14em;height:14em;background:#e8ccbf;border:1px solid #d6a48c;}
+.ring.som{width:8em;height:8em;background:var(--accent);border:1px solid var(--accent);}
+.rlab{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--serif-latin);font-weight:600;letter-spacing:.1em;text-align:center;}
+.rlab.l-tam{top:.7em;color:#8a6353;font-size:1.05em;}
+.rlab.l-sam{top:3.2em;color:#7c4a37;font-size:1.05em;}
+.rlab.l-som{top:50%;transform:translate(-50%,-50%);color:#fff;font-size:1.3em;}
+.legend{display:flex;flex-direction:column;gap:.75em;}
+.leg{display:flex;gap:.7em;align-items:flex-start;}
+.leg .sw{width:.95em;height:.95em;border-radius:3px;flex:0 0 auto;margin-top:.3em;}
+.leg .lt{font-family:var(--serif-latin);font-weight:600;font-size:.98em;}
+.leg .ld{font-size:.78em;color:var(--muted);}
+.leg .ln{font-size:.82em;color:#2c2a25;font-weight:600;margin-top:.12em;}
 .dwrap{display:grid;grid-template-columns:1fr 1fr;gap:1.6em;}
 .dt{border-top:2px solid var(--line-strong);}
 .dt.assume{border-top-color:var(--accent);}
@@ -541,27 +557,22 @@ p{line-height:1.62;}
           <span class="estbadge">추정 · 가정 기반 산정</span>
         </div>
         <div class="cols cols-12-7" style="gap:2.4em;align-items:center;">
-          <div class="tssom">
-            <div class="tier tam">
-              <div class="th"><span class="tt">TAM</span><span class="tdef">국내 전체 합주 운영 잠재 시장</span></div>
-              <div class="trev">연 5.4억 ~ 27.1억 원</div>
-              <div class="tsub">4,500~11,300팀 · 11.3만~28.2만 명</div>
-            </div>
-            <div class="tier sam">
-              <div class="th"><span class="tt">SAM</span><span class="tdef">대학 밴드부·공연음악 동아리</span></div>
-              <div class="trev">연 1.4억 ~ 7.3억 원</div>
-              <div class="tsub">1,100~3,000개 동아리 · 2.9만~7.6만 명</div>
-            </div>
-            <div class="tier som">
-              <div class="th"><span class="tt">SOM</span><span class="tdef">1~2년 내 초기 확보 목표</span></div>
-              <div class="trev">연 600만 ~ 3,000만 원</div>
-              <div class="tsub">100~250개 동아리 · 50~125개 유료 팀</div>
-            </div>
+          <div class="donut">
+            <div class="ring tam"></div>
+            <div class="ring sam"></div>
+            <div class="ring som"></div>
+            <div class="rlab l-tam">TAM</div>
+            <div class="rlab l-sam">SAM</div>
+            <div class="rlab l-som">SOM</div>
           </div>
-          <div class="stack" style="gap:1em;">
-            <h2 class="serif" style="font-size:1.45em;line-height:1.42;">거대한 일반 일정 앱 시장이 아니라,<br/><span class="accent">합주 운영 문제가 반복되는</span> 밴드부·공연음악 동아리 시장을 공략한다.</h2>
+          <div class="stack" style="gap:.95em;">
+            <div class="legend">
+              <div class="leg"><span class="sw" style="background:#f4e9e3;border:1px solid #e4cabe;"></span><div><span class="lt">TAM</span> <span class="ld">· 국내 전체 합주 운영 잠재 시장</span><div class="ln">연 5.4억~27.1억 원 · 4,500~11,300팀 · 11.3만~28.2만 명</div></div></div>
+              <div class="leg"><span class="sw" style="background:#e8ccbf;border:1px solid #d6a48c;"></span><div><span class="lt">SAM</span> <span class="ld">· 대학 밴드부·공연음악 동아리</span><div class="ln">연 1.4억~7.3억 원 · 1,100~3,000개 · 2.9만~7.6만 명</div></div></div>
+              <div class="leg"><span class="sw" style="background:var(--accent);"></span><div><span class="lt">SOM</span> <span class="ld">· 1~2년 내 초기 확보 목표</span><div class="ln">연 600만~3,000만 원 · 100~250개 · 50~125개 유료 팀</div></div></div>
+            </div>
             <hr class="rule"/>
-            <p class="muted" style="font-size:.84em;">TAM은 전체 잠재, SAM은 현실적 공략 범위, SOM은 1~2년 목표. <b class="accent">아래로 갈수록 좁고 확실해진다.</b></p>
+            <p class="serif" style="font-size:1.05em;line-height:1.42;">거대한 일반 일정 앱이 아니라, <span class="accent">합주 운영 문제가 반복되는</span> 밴드부·공연음악 동아리 시장을 공략한다.</p>
           </div>
         </div>
         <p class="foot">※ 모든 시장 규모는 <b>추정치</b>이며 가정 기반 산정입니다. 산정 근거·출처는 다음 장 참조.</p>
